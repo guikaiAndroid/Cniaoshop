@@ -19,6 +19,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        //如果下载比较慢 我们可以从国内仓库获取
+        //maven{ url 'http://maven.oschina.net/content/groups/puclic'}
     }
 }
 

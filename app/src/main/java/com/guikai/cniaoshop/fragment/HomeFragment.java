@@ -21,8 +21,15 @@ import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.HomeCategory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeFragment extends Fragment {
 
@@ -32,7 +39,7 @@ public class HomeFragment extends Fragment {
 
 
 
-    private static  final  String TAG="HomeFragment";
+    private static final  String TAG="HomeFragment";
 
     @Nullable
     @Override
@@ -40,11 +47,44 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container,false);
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider);
-        initSlider();
 
-        initRecyclerView(view);
+        requestImages();
+//        initSlider();
+//
+//
+//
+//        initRecyclerView(view);
         return view;
     }
+
+    private void requestImages() {
+        String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, IOException e) {
+                Log.e("HomeFragment", "xxxxxxxxx");
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String json = response.body().string();
+                    Log.e("HomeFragment", "json="+json );
+
+                }
+            }
+        });
+
+
+
+        }
 
     private void initRecyclerView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
