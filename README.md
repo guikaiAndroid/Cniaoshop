@@ -4,7 +4,7 @@
 
 涉及到的知识点有：
 
-1. FragmentTabHost实现底部菜单
+1. FragmentTabHost实现底部菜单导航
 
 2. 自定义ToolBar
 
