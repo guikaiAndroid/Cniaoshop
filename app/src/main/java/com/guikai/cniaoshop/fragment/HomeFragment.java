@@ -23,6 +23,7 @@ import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.HomeCategory;
+import com.guikai.cniaoshop.widget.CustomSliderView;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -136,17 +137,16 @@ public class HomeFragment extends Fragment {
         if (mBanner != null) {
             for (Banner banner : mBanner) {
 
-                TextSliderView textSliderView = new TextSliderView(this.getActivity());
+                CustomSliderView customSliderView = new CustomSliderView(getActivity());
+                customSliderView
+                        .description(banner.getName())
+                        .image(banner.getImgUrl())
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
 
-                textSliderView.image(banner.getImgUrl());
-                textSliderView.description(banner.getName());
-                textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
-                mSliderLayout.addSlider(textSliderView);
+                mSliderLayout.addSlider(customSliderView);
             }
         }
-
-
-
+        
         //原点动画
         mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
 
