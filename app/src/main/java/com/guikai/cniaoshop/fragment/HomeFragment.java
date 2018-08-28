@@ -79,18 +79,17 @@ public class HomeFragment extends Fragment {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, IOException e) {
-                Log.e("xxxxxxxxxxxxxxxxxxxxxx", "xxxxxxxxx");
+
             }
 
             @Override
             public void onResponse(@NonNull Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String json = response.body().string();
-                    Log.e("xxxxxxx","json"+json);
+
                     //将Json数据转换为List<Banner> 利用Gson Type转换
                     Type type = new TypeToken<List<Banner>>(){}.getType();
                     mBanner = mGson.fromJson(json, type);
-
                     initSlider();
                 }
             }
@@ -103,31 +102,9 @@ public class HomeFragment extends Fragment {
     private void initRecyclerView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
 
-        List<HomeCategory> datas = new ArrayList<>(15);
+        List<HomeCategory> datas = new ArrayList<>(5);
 
         HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_0_small1,R.drawable.img_1_small2);
-        datas.add(category);
-
-        category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
-        datas.add(category);
-        category = new HomeCategory("品牌街",R.drawable.img_big_2,R.drawable.img_2_small1,R.drawable.img_2_small2);
-        datas.add(category);
-
-        category = new HomeCategory("金融街 包赚翻",R.drawable.img_big_1,R.drawable.img_3_small1,R.drawable.imag_3_small2);
-        datas.add(category);
-
-        category = new HomeCategory("超值购",R.drawable.img_big_0,R.drawable.img_0_small1,R.drawable.img_0_small2);
-        datas.add(category);
-
-        category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
-        datas.add(category);
-        category = new HomeCategory("品牌街",R.drawable.img_big_2,R.drawable.img_2_small1,R.drawable.img_2_small2);
-        datas.add(category);
-
-        category = new HomeCategory("金融街 包赚翻",R.drawable.img_big_1,R.drawable.img_3_small1,R.drawable.imag_3_small2);
-        datas.add(category);
-
-        category = new HomeCategory("超值购",R.drawable.img_big_0,R.drawable.img_0_small1,R.drawable.img_0_small2);
         datas.add(category);
 
         category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
@@ -159,9 +136,9 @@ public class HomeFragment extends Fragment {
         if (mBanner != null) {
             for (Banner banner : mBanner) {
 
-                TextSliderView textSliderView = new TextSliderView(this.getContext());
+                TextSliderView textSliderView = new TextSliderView(this.getActivity());
 
-                textSliderView.image(banner.getImageUrl());
+                textSliderView.image(banner.getImgUrl());
                 textSliderView.description(banner.getName());
                 textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
                 mSliderLayout.addSlider(textSliderView);
@@ -169,12 +146,13 @@ public class HomeFragment extends Fragment {
         }
 
 
+
         //原点动画
         mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
 
         mSliderLayout.setCustomAnimation(new DescriptionAnimation());
         //图片跳转动画
-        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.Default);
+        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.RotateUp);
         //时间
         mSliderLayout.setDuration(3000);
 

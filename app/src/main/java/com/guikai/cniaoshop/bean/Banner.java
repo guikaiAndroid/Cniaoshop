@@ -10,9 +10,10 @@ package com.guikai.cniaoshop.bean;
 public class Banner extends BaseBean {
 
     //根据获取的Json的数据 写一个相对于的实体类
-    private String name;
-    private String imageUrl;
-    private String description;
+    private  String name;
+    private  String imgUrl;
+    private  String description;
+
 
     public String getName() {
         return name;
@@ -22,12 +23,12 @@ public class Banner extends BaseBean {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getDescription() {
