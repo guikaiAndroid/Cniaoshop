@@ -1,5 +1,8 @@
 package com.guikai.cniaoshop.http;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
@@ -29,6 +32,9 @@ public class OkHttpHelper {
 
     private Gson gson;
 
+    //解决报错cush 开启子线程handler 不能在子线程刷新UI 安卓中控件都是线程安全的
+    private Handler handler;
+
     //单例模式
     private OkHttpHelper(){
 
@@ -38,10 +44,12 @@ public class OkHttpHelper {
                            .connectTimeout(10,TimeUnit.SECONDS)
                            .build();
         gson = new Gson();
+
+        handler = new Handler(Looper.myLooper());
     }
 
     //单例模式
-    private static OkHttpHelper getInstance() {
+    public static OkHttpHelper getInstance() {
         return new OkHttpHelper();
     }
 
@@ -73,28 +81,25 @@ public class OkHttpHelper {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
-//                response.isSuccessful()
-//                response.body().string()
-//                gson.fromJson(response.body().string(), callback.mType);
                 if (response.isSuccessful()) {
 
                     String resultStr = response.body().string();
 
                     if (callback.mType == String.class) {
+
                         callback.onSuccess(call, response, resultStr);
+
+                        callbackSuccess(callback, response, resultStr);
                     }
                     else {
 
-
                         try {
                             Object object = gson.fromJson(resultStr, callback.mType);
-                            callback.onSuccess(call,response,object);
+                            callbackSuccess(callback, response, object);
                         } catch (JsonParseException e) {
-                            callback.onError(call, response, response.code(),e);
+                            callbackError(callback, response, e);
                         }
                     }
-
-
                 }
                 else {
                     callback.onError(call,response,response.code(),null);
@@ -131,10 +136,30 @@ public class OkHttpHelper {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 builder.add(entry.getKey(), entry.getValue());
             }
-
         }
 
         return builder.build();
+    }
+
+    //发送消息 通知主线程更新UI
+    private void callbackSuccess(final BaseCallback callback, final Response response, final Object object) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(null, response,object);
+            }
+        });
+    }
+
+    private void callbackError(final BaseCallback callback, final Response response, final Exception e) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onError(null, response, response.code(), e);
+            }
+        });
     }
 
     enum HttpMethodType{

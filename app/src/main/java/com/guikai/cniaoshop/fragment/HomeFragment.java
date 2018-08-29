@@ -22,6 +22,8 @@ import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.HomeCategory;
+import com.guikai.cniaoshop.http.BaseCallback;
+import com.guikai.cniaoshop.http.OkHttpHelper;
 import com.guikai.cniaoshop.widget.CustomSliderView;
 
 import java.io.IOException;
@@ -48,6 +50,8 @@ public class HomeFragment extends Fragment {
 
     private List<Banner> mBanner;
 
+    private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,42 +66,68 @@ public class HomeFragment extends Fragment {
     }
 
     private void requestImages() {
-        String url = "http://112.124.22.238:8081/course_api/banner/query";
 
-        OkHttpClient client = new OkHttpClient();
 
-        //okHttp3跟2的不同 这里使用FormBody
-        FormBody body = new FormBody.Builder()
-                .add("type", "1")
-                .build();
+        String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
+//
+//        OkHttpClient client = new OkHttpClient();
+//
+//        //okHttp3跟2的不同 这里使用FormBody
+//        FormBody body = new FormBody.Builder()
+//                .add("type", "1")
+//                .build();
+//
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .post(body)
+//                .build();
+//
+//        client.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NonNull Call call, IOException e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(@NonNull Call call, Response response) throws IOException {
+//                if (response.isSuccessful()) {
+//                    String json = response.body().string();
+//
+//                    //将Json数据转换为List<Banner> 利用Gson Type转换
+//                    Type type = new TypeToken<List<Banner>>(){}.getType();
+//                    mBanner = mGson.fromJson(json, type);
+//                    initSlider();
+//                }
+//            }
+//        });
 
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
+        httpHelper.get(url, new BaseCallback<List<Banner>>() {
 
-        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NonNull Call call, IOException e) {
+            public void onRequestBefore(Request request) {
 
             }
 
             @Override
-            public void onResponse(@NonNull Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String json = response.body().string();
+            public void onFailure(Call call, IOException e) {
 
-                    //将Json数据转换为List<Banner> 利用Gson Type转换
-                    Type type = new TypeToken<List<Banner>>(){}.getType();
-                    mBanner = mGson.fromJson(json, type);
-                    initSlider();
-                }
+            }
+
+            @Override
+            public void onSuccess(Call call, Response response, List<Banner> banners) {
+
+                Log.e("banner",banners.size()+"");
+                mBanner = banners;
+
+                initSlider();
+            }
+
+            @Override
+            public void onError(Call call, Response response, int code, Exception e) {
+
             }
         });
-
-
-
-        }
+    }
 
     private void initRecyclerView(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
@@ -145,38 +175,30 @@ public class HomeFragment extends Fragment {
                 mSliderLayout.addSlider(customSliderView);
             }
         }
-        
+
         //原点动画
         mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
 
         mSliderLayout.setCustomAnimation(new DescriptionAnimation());
         //图片跳转动画
-        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.RotateUp);
+        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipPage);
         //时间
         mSliderLayout.setDuration(3000);
-
-
-
 
 
         mSliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
-
                 Log.d(TAG,"onPageScrolled");
-
             }
 
             @Override
             public void onPageSelected(int i) {
-
                 Log.d(TAG,"onPageSelected");
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
                 Log.d(TAG,"onPageScrollStateChanged");
             }
         });
@@ -186,7 +208,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         mSliderLayout.stopAutoCycle();
     }
 }
