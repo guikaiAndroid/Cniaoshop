@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -67,7 +66,7 @@ public class HomeFragment extends Fragment {
 
         OkHttpClient client = new OkHttpClient();
 
-        //okHttp3跟2不同 这里使用FormBody
+        //okHttp3跟2的不同 这里使用FormBody
         FormBody body = new FormBody.Builder()
                 .add("type", "1")
                 .build();
