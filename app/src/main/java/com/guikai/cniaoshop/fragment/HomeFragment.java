@@ -16,7 +16,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
@@ -27,14 +26,10 @@ import com.guikai.cniaoshop.http.OkHttpHelper;
 import com.guikai.cniaoshop.widget.CustomSliderView;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -181,7 +176,7 @@ public class HomeFragment extends Fragment {
 
         mSliderLayout.setCustomAnimation(new DescriptionAnimation());
         //图片跳转动画
-        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.FlipPage);
+        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.ZoomOut);
         //时间
         mSliderLayout.setDuration(3000);
 
