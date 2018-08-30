@@ -1,5 +1,6 @@
 package com.guikai.cniaoshop.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guikai.cniaoshop.R;
-import com.guikai.cniaoshop.bean.HomeCategory;
+import com.guikai.cniaoshop.bean.HomeCampaign;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,10 +22,13 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
 
     private LayoutInflater mInflate;
 
-    private List<HomeCategory> mDatas;
+    private List<HomeCampaign> mDatas;
 
-    public HomeCatgoryAdapter(List<HomeCategory> mDatas) {
+    private Context mContext;
+
+    public HomeCatgoryAdapter(List<HomeCampaign> mDatas, Context context) {
         this.mDatas = mDatas;
+        this.mContext = context;
     }
 
     @NonNull
@@ -41,11 +46,15 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        HomeCategory category = mDatas.get(i);
-        viewHolder.textTitle.setText(category.getName());
-        viewHolder.imageViewBig.setImageResource(category.getImgBig());
-        viewHolder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
-        viewHolder.imageViewsSmallBottom.setImageResource(category.getImgSmallbottom());
+        HomeCampaign homeCampaign = mDatas.get(i);
+        viewHolder.textTitle.setText(homeCampaign.getTitle());
+//        viewHolder.imageViewBig.setImageResource(category.getCpOne().getImaUrl());
+//        viewHolder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
+//        viewHolder.imageViewsSmallBottom.setImageResource(category.getImgSmallbottom());
+        //使用picasso框架 从网络下载图片缓存 然后显示到界面
+        Picasso.with(mContext).load(homeCampaign.getCpOne().getImgUrl()).into(viewHolder.imageViewBig);
+        Picasso.with(mContext).load(homeCampaign.getCpTwo().getImgUrl()).into(viewHolder.imageViewSmallTop);
+        Picasso.with(mContext).load(homeCampaign.getCpThree().getImgUrl()).into(viewHolder.imageViewsSmallBottom);
     }
 
 

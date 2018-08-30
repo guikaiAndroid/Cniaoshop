@@ -16,17 +16,17 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
+import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
-import com.guikai.cniaoshop.bean.HomeCategory;
+import com.guikai.cniaoshop.bean.HomeCampaign;
 import com.guikai.cniaoshop.http.BaseCallback;
 import com.guikai.cniaoshop.http.OkHttpHelper;
 import com.guikai.cniaoshop.widget.CustomSliderView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -64,37 +64,8 @@ public class HomeFragment extends Fragment {
 
 
         String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
-//
-//        OkHttpClient client = new OkHttpClient();
-//
-//        //okHttp3跟2的不同 这里使用FormBody
-//        FormBody body = new FormBody.Builder()
-//                .add("type", "1")
-//                .build();
-//
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(body)
-//                .build();
-//
-//        client.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(@NonNull Call call, IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(@NonNull Call call, Response response) throws IOException {
-//                if (response.isSuccessful()) {
-//                    String json = response.body().string();
-//
-//                    //将Json数据转换为List<Banner> 利用Gson Type转换
-//                    Type type = new TypeToken<List<Banner>>(){}.getType();
-//                    mBanner = mGson.fromJson(json, type);
-//                    initSlider();
-//                }
-//            }
-//        });
+
+
 
         httpHelper.get(url, new BaseCallback<List<Banner>>() {
 
@@ -125,31 +96,63 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView(View view) {
+//        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+//
+//        List<HomeCategory> datas = new ArrayList<>(5);
+//
+//        HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_0_small1,R.drawable.img_1_small2);
+//        datas.add(category);
+//
+//        category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
+//        datas.add(category);
+//        category = new HomeCategory("品牌街",R.drawable.img_big_2,R.drawable.img_2_small1,R.drawable.img_2_small2);
+//        datas.add(category);
+//
+//        category = new HomeCategory("金融街 包赚翻",R.drawable.img_big_1,R.drawable.img_3_small1,R.drawable.imag_3_small2);
+//        datas.add(category);
+//
+//        category = new HomeCategory("超值购",R.drawable.img_big_0,R.drawable.img_0_small1,R.drawable.img_0_small2);
+//        datas.add(category);
+//
+//        mAdatper = new HomeCatgoryAdapter(datas);
+//
+//        mRecyclerView.setAdapter(mAdatper);
+//
+//        mRecyclerView.addItemDecoration(new DividerItemDecortion());
+//
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        httpHelper.get(Contants.API.CAMPAIGN_HOME, new BaseCallback<List<HomeCampaign>>() {
+            @Override
+            public void onRequestBefore(Request request) {
 
-        List<HomeCategory> datas = new ArrayList<>(5);
+            }
 
-        HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_0_small1,R.drawable.img_1_small2);
-        datas.add(category);
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
 
-        category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
-        datas.add(category);
-        category = new HomeCategory("品牌街",R.drawable.img_big_2,R.drawable.img_2_small1,R.drawable.img_2_small2);
-        datas.add(category);
+            @Override
+            public void onSuccess(Call call, Response response, List<HomeCampaign> homeCampaigns) {
+                initData(homeCampaigns);
+            }
 
-        category = new HomeCategory("金融街 包赚翻",R.drawable.img_big_1,R.drawable.img_3_small1,R.drawable.imag_3_small2);
-        datas.add(category);
 
-        category = new HomeCategory("超值购",R.drawable.img_big_0,R.drawable.img_0_small1,R.drawable.img_0_small2);
-        datas.add(category);
+            @Override
+            public void onError(Call call, Response response, int code, Exception e) {
 
-        mAdatper = new HomeCatgoryAdapter(datas);
+            }
+        });
 
+    }
+
+    private void initData(List<HomeCampaign> homeCampaigns) {
+
+        mAdatper = new HomeCatgoryAdapter(homeCampaigns, getActivity());
         mRecyclerView.setAdapter(mAdatper);
-
         mRecyclerView.addItemDecoration(new DividerItemDecortion());
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
     }
 
