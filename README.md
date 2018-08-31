@@ -16,6 +16,6 @@
 
 6. okHttp的封装
 
-6. 主页商品列表重构 利用okHttp获取json数据 Picasso图片缓存
+6. 主页商品列表重构 利用okHttp获取json数据 Picasso网络图片缓存
 
 7. 主页商品点击事件(RecyclerView的点击)
