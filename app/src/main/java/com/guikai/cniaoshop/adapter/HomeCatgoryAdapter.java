@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guikai.cniaoshop.R;
+import com.guikai.cniaoshop.bean.Campaign;
 import com.guikai.cniaoshop.bean.HomeCampaign;
 import com.squareup.picasso.Picasso;
 
@@ -21,14 +22,18 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
     private static int VIEW_TYPE_R = 1;
 
     private LayoutInflater mInflate;
-
     private List<HomeCampaign> mDatas;
-
     private Context mContext;
+
+    private OncampaignClickListener mListener;
 
     public HomeCatgoryAdapter(List<HomeCampaign> mDatas, Context context) {
         this.mDatas = mDatas;
         this.mContext = context;
+    }
+
+    public void setOncampaignClickListener(OncampaignClickListener mListener) {
+        this.mListener = mListener;
     }
 
     @NonNull
@@ -72,7 +77,7 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
         return mDatas.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView textTitle;
         ImageView imageViewBig;
@@ -86,6 +91,38 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
             imageViewBig = (ImageView) itemView.findViewById(R.id.imgview_big);
             imageViewSmallTop = (ImageView) itemView.findViewById(R.id.imgview_small_top);
             imageViewsSmallBottom = (ImageView) itemView.findViewById(R.id.imgview_small_bottom);
+
+            imageViewBig.setOnClickListener(this);
+            imageViewSmallTop.setOnClickListener(this);
+            imageViewsSmallBottom.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            HomeCampaign homeCampaign = mDatas.get(getLayoutPosition());
+            if (mListener != null) {
+                switch (view.getId()) {
+                    case R.id.imgview_big:
+                        mListener.onClick(view, homeCampaign.getCpOne());
+                        break;
+
+                    case R.id.imgview_small_top:
+                        mListener.onClick(view, homeCampaign.getCpTwo());
+                        break;
+
+                    case R.id.imgview_small_bottom:
+                        mListener.onClick(view, homeCampaign.getCpThree());
+                        break;
+
+                }
+            }
         }
     }
+
+    //为首页商品图片添加点击事件的监听
+    public interface OncampaignClickListener {
+
+        void onClick(View view, Campaign campaign);
+    }
+
 }

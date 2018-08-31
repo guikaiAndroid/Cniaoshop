@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -21,6 +22,7 @@ import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
+import com.guikai.cniaoshop.bean.Campaign;
 import com.guikai.cniaoshop.bean.HomeCampaign;
 import com.guikai.cniaoshop.http.BaseCallback;
 import com.guikai.cniaoshop.http.OkHttpHelper;
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(Call call, Response response, List<Banner> banners) {
 
-                Log.e("banner",banners.size()+"");
+                Log.e("banner: ",banners.size()+"");
                 mBanner = banners;
 
                 initSlider();
@@ -96,53 +98,25 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView(View view) {
-//        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-//
-//        List<HomeCategory> datas = new ArrayList<>(5);
-//
-//        HomeCategory category = new HomeCategory("热门活动", R.drawable.img_big_1, R.drawable.img_0_small1,R.drawable.img_1_small2);
-//        datas.add(category);
-//
-//        category = new HomeCategory("有利可图",R.drawable.img_big_4,R.drawable.img_4_small1,R.drawable.img_4_small2);
-//        datas.add(category);
-//        category = new HomeCategory("品牌街",R.drawable.img_big_2,R.drawable.img_2_small1,R.drawable.img_2_small2);
-//        datas.add(category);
-//
-//        category = new HomeCategory("金融街 包赚翻",R.drawable.img_big_1,R.drawable.img_3_small1,R.drawable.imag_3_small2);
-//        datas.add(category);
-//
-//        category = new HomeCategory("超值购",R.drawable.img_big_0,R.drawable.img_0_small1,R.drawable.img_0_small2);
-//        datas.add(category);
-//
-//        mAdatper = new HomeCatgoryAdapter(datas);
-//
-//        mRecyclerView.setAdapter(mAdatper);
-//
-//        mRecyclerView.addItemDecoration(new DividerItemDecortion());
-//
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
+        //从网络加载商品展示页
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+
         httpHelper.get(Contants.API.CAMPAIGN_HOME, new BaseCallback<List<HomeCampaign>>() {
             @Override
-            public void onRequestBefore(Request request) {
-
-            }
+            public void onRequestBefore(Request request) { }
 
             @Override
-            public void onFailure(Call call, IOException e) {
-            }
+            public void onFailure(Call call, IOException e) { }
 
             @Override
             public void onSuccess(Call call, Response response, List<HomeCampaign> homeCampaigns) {
+                Log.e("首页homeCampaigns商品显示成功: ",homeCampaigns.size()+"");
                 initData(homeCampaigns);
             }
 
-
             @Override
-            public void onError(Call call, Response response, int code, Exception e) {
+            public void onError(Call call, Response response, int code, Exception e) { }
 
-            }
         });
 
     }
@@ -150,6 +124,13 @@ public class HomeFragment extends Fragment {
     private void initData(List<HomeCampaign> homeCampaigns) {
 
         mAdatper = new HomeCatgoryAdapter(homeCampaigns, getActivity());
+        //设置点击事件
+        mAdatper.setOncampaignClickListener(new HomeCatgoryAdapter.OncampaignClickListener() {
+            @Override
+            public void onClick(View view, Campaign campaign) {
+                Toast.makeText(getActivity(), "title:"+campaign.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
         mRecyclerView.setAdapter(mAdatper);
         mRecyclerView.addItemDecoration(new DividerItemDecortion());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
