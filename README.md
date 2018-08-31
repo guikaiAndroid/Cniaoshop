@@ -17,3 +17,5 @@
 6. okHttp的封装
 
 6. 主页商品列表重构 利用okHttp获取额数据json 加载整个主页
+
+7. 主页商品点击事件(RecyclerView的点击)
