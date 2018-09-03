@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/selector_list_item"
@@ -15,10 +14,7 @@
         android:background="@null"
         android:id="@+id/drawee_view"
         android:layout_alignParentLeft="true"
-        app:viewAspectRatio="1"
-
-        >
-
+        app:viewAspectRatio="1">
     </com.facebook.drawee.view.SimpleDraweeView>
 
 
@@ -35,17 +31,14 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:maxLines="3"
-
-            />
+            android:maxLines="3" />
 
         <TextView
             android:id="@+id/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/firebrick"
-            />
+            android:textColor="@color/firebrick" />
 
         <Button
             android:layout_width="wrap_content"
@@ -53,16 +46,8 @@
             style="@style/bigRedButton"
             android:layout_marginTop="20dp"
             android:text="立即购买"
-            android:layout_gravity="right|bottom"
-            />
-
+            android:layout_gravity="right|bottom" />
 
     </LinearLayout>
-
-
-
-
-
-
 
 </RelativeLayout>
