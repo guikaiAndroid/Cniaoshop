@@ -10,7 +10,6 @@
         android:id="@+id/refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         app:overlay="true"
         app:wave_color="#90ffffff"
         app:wave_show="true"

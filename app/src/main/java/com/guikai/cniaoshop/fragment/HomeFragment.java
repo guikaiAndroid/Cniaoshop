@@ -19,6 +19,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
+import com.guikai.cniaoshop.adapter.CardViewtemDecortion;
 import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
@@ -64,10 +65,7 @@ public class HomeFragment extends Fragment {
 
     private void requestImages() {
 
-
         String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
-
-
 
         httpHelper.get(url, new BaseCallback<List<Banner>>() {
 
@@ -78,6 +76,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) {
 
             }
 
@@ -109,6 +112,11 @@ public class HomeFragment extends Fragment {
             public void onFailure(Call call, IOException e) { }
 
             @Override
+            public void onResponse(Response response) {
+
+            }
+
+            @Override
             public void onSuccess(Call call, Response response, List<HomeCampaign> homeCampaigns) {
                 Log.e("首页homeCampaigns商品显示成功: ",homeCampaigns.size()+"");
                 initData(homeCampaigns);
@@ -132,7 +140,7 @@ public class HomeFragment extends Fragment {
             }
         });
         mRecyclerView.setAdapter(mAdatper);
-        mRecyclerView.addItemDecoration(new DividerItemDecortion());
+        mRecyclerView.addItemDecoration(new CardViewtemDecortion());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
     }

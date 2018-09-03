@@ -43,6 +43,7 @@ public abstract class BaseCallback<T> {
 
     public abstract void onFailure(Call call, IOException e);
 
+    public abstract  void onResponse(Response response);
 
     public abstract void onSuccess(Call call, Response response, T t);
 

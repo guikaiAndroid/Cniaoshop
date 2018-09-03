@@ -109,6 +109,45 @@ public class OkHttpHelper {
         });
     }
 
+    //发送消息 通知主线程更新UI
+    private void callbackSuccess(final BaseCallback callback, final Response response, final Object object) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(null, response,object);
+            }
+        });
+    }
+
+    private void callbackError(final BaseCallback callback, final Response response, final Exception e) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onError(null, response, response.code(), e);
+            }
+        });
+    }
+
+    private void callbackFailure(final BaseCallback callback, final Request request, final IOException e) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onFailure(null,e);
+            }
+        });
+    }
+
+    private void callbackResponse(final BaseCallback callback, final Response response) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onResponse(response);
+            }
+        });
+    }
+
     private Request buildRequset(String url, Map<String, String> params, HttpMethodType methodType) {
 
         Request.Builder builder = new Request.Builder();
@@ -139,27 +178,6 @@ public class OkHttpHelper {
         }
 
         return builder.build();
-    }
-
-    //发送消息 通知主线程更新UI
-    private void callbackSuccess(final BaseCallback callback, final Response response, final Object object) {
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess(null, response,object);
-            }
-        });
-    }
-
-    private void callbackError(final BaseCallback callback, final Response response, final Exception e) {
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                callback.onError(null, response, response.code(), e);
-            }
-        });
     }
 
     enum HttpMethodType{

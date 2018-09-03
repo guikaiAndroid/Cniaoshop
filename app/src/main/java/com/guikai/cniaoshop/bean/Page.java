@@ -18,6 +18,7 @@ public class Page<T> {
 
     private List<T> list;
 
+
     public int getCurrentPage() {
         return currentPage;
     }

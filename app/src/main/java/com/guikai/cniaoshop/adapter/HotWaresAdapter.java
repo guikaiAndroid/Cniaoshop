@@ -50,7 +50,10 @@ public class HotWaresAdapter extends RecyclerView.Adapter<HotWaresAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        if(mDatas!=null && mDatas.size()>0)
+            return mDatas.size();
+
+        return 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,9 +65,41 @@ public class HotWaresAdapter extends RecyclerView.Adapter<HotWaresAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            draweeView = (SimpleDraweeView) itemView.findViewById(R.id.text_title);
-            textTitle = (TextView) itemView.findViewById(R.id.text_title);
-            textPrice =(TextView) itemView.findViewById(R.id.text_price);
+            draweeView = (SimpleDraweeView) itemView.findViewById(R.id.drawee_view);
+            textTitle= (TextView) itemView.findViewById(R.id.text_title);
+            textPrice= (TextView) itemView.findViewById(R.id.text_price);
+        }
+    }
+
+
+
+    //获取指定位置的Wares
+    public Wares getData(int position) {
+        return mDatas.get(position);
+    }
+
+    //获取全部数据
+    public List<Wares> getDatas() {
+        return mDatas;
+    }
+
+    //清空热卖商品List
+    public void clearData() {
+        mDatas.clear();
+        notifyItemRangeRemoved(0,mDatas.size());
+    }
+
+    public void addData(List<Wares> datas) {
+
+        addData(0,datas);
+    }
+
+    //添加热卖商品数据
+    public void addData(int position, List<Wares> datas) {
+
+        if (datas != null && datas.size()>0) {
+            mDatas.addAll(datas);
+            notifyItemRangeChanged(position, mDatas.size());
         }
     }
 
