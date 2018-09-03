@@ -3,7 +3,6 @@ package com.guikai.cniaoshop.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -70,10 +69,11 @@ public class HotFragment extends Fragment {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
 
-                if(currPage <= totalPage)
-                    loadMoreData();
+                if(currPage <= 2){
+                    Log.e("onRefreshLoadMore",currPage+"xxx"+totalPage);
+                    loadMoreData();}
                 else{
-
+                    Log.e("finishRefreshLoadMore()",currPage+"xxx"+totalPage);
                     mRefreshLayout.finishRefreshLoadMore();
                 }
             }
