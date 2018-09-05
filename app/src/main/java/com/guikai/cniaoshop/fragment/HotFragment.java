@@ -16,6 +16,7 @@ import com.cjj.MaterialRefreshListener;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.DividerItemDecortion;
+import com.guikai.cniaoshop.adapter.HWAdatper;
 import com.guikai.cniaoshop.adapter.HotWaresAdapter;
 import com.guikai.cniaoshop.bean.Page;
 import com.guikai.cniaoshop.bean.Wares;
@@ -123,9 +124,13 @@ public class HotFragment extends Fragment {
         switch (state) {
             //正常情况下获取数据
             case STATE_NORMAL:
-                mAdapter = new HotWaresAdapter(datas);
-
-                mRecyclerView.setAdapter(mAdapter);
+//                mAdapter = new HotWaresAdapter(datas);
+//
+//                mRecyclerView.setAdapter(mAdapter);
+//                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//                mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//                mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));
+                mRecyclerView.setAdapter(new HWAdatper(getContext(),datas));
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));

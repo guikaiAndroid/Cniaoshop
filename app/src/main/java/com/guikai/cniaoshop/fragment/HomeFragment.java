@@ -15,12 +15,10 @@ import android.widget.Toast;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.CardViewtemDecortion;
-import com.guikai.cniaoshop.adapter.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.Campaign;
@@ -173,22 +171,22 @@ public class HomeFragment extends Fragment {
         mSliderLayout.setDuration(3000);
 
 
-        mSliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-                Log.d(TAG,"onPageScrolled");
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                Log.d(TAG,"onPageSelected");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                Log.d(TAG,"onPageScrollStateChanged");
-            }
-        });
+//        mSliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int i, float v, int i1) {
+//                Log.d(TAG,"onPageScrolled");
+//            }
+//
+//            @Override
+//            public void onPageSelected(int i) {
+//                Log.d(TAG,"onPageSelected");
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int i) {
+//                Log.d(TAG,"onPageScrollStateChanged");
+//            }
+//        });
     }
 
 

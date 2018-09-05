@@ -1,12 +1,12 @@
 package com.guikai.cniaoshop.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,42 +16,116 @@ import java.util.List;
  * Creator:      Anding
  * Note:         公共的基类Adapter
  */
-public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder>{
+public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder>{
 
-    protected List<T> mDatas;
-    protected LayoutInflater mInflater;
-    protected Context mContext;
-    protected int mLayoutResId;
 
-    public BaseAdapter(Context context, List<T> datas, int layoutResId) {
-        this.mContext = context;
-        this.mDatas = datas;
-        this.mLayoutResId = layoutResId;
-        mInflater = LayoutInflater.from(context);
+
+    protected static final String TAG = BaseAdapter.class.getSimpleName();
+
+    protected final Context context;
+
+    protected final int layoutResId;
+
+    protected List<T> datas;
+
+
+    private OnItemClickListener mOnItemClickListener = null;
+
+
+
+    public  interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
-    @NonNull
+
+
+    public BaseAdapter(Context context, int layoutResId) {
+        this(context, layoutResId, null);
+    }
+
+
+    public BaseAdapter(Context context, int layoutResId, List<T> datas) {
+        this.datas = datas == null ? new ArrayList<T>() : datas;
+        this.context = context;
+        this.layoutResId = layoutResId;
+    }
+
+
+
+
     @Override
-    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = mInflater.inflate(mLayoutResId,null,false);
-        return new BaseViewHolder(view);
+    public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup,  int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutResId, viewGroup, false);
+        BaseViewHolder vh = new BaseViewHolder(view,mOnItemClickListener);
+        return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int i) {
-        T t = getItem(i);
-        bindData(baseViewHolder,t);
+    public void onBindViewHolder(BaseViewHolder viewHoder,  int position) {
+        T item = getItem(position);
+        convert((H)viewHoder, item);
     }
+
+
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        if(datas==null || datas.size()<=0)
+            return 0;
+
+        return datas.size();
     }
 
-    //onBindViewHolder 数据与layouItem中的View绑定需要调用者完成，故需要成抽象方法
-    public abstract void bindData(BaseViewHolder viewHolder, T t);
 
     public T getItem(int position) {
-        return mDatas.get(position);
+        if (position >= datas.size()) return null;
+        return datas.get(position);
     }
+
+
+    public void clear(){
+        int itemCount = datas.size();
+        datas.clear();
+        this.notifyItemRangeRemoved(0,itemCount);
+    }
+
+    public List<T> getDatas(){
+
+        return  datas;
+    }
+    public void addData(List<T> datas){
+
+        addData(0,datas);
+    }
+
+    public void addData(int position,List<T> datas){
+        if(datas !=null && datas.size()>0) {
+
+            this.datas.addAll(datas);
+            this.notifyItemRangeChanged(position, datas.size());
+        }
+    }
+
+
+
+
+    /**
+     * Implement this method and use the helper to adapt the view to the given item.
+     * @param viewHoder A fully initialized helper.
+     * @param item   The item that needs to be displayed.
+     */
+    protected abstract void convert(H viewHoder, T item);
+
+
+
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+
+    }
+
+
+
+
 }
+
