@@ -29,6 +29,6 @@ public class HWAdatper extends SimpleAdapter<Wares> {
         draweeView.setImageURI(Uri.parse(wares.getImgUrl()));
 
         viewHolder.getTextView(R.id.text_title).setText(wares.getName());
-//                        TextView textView = (TextView) viewHolder.getView(R.id.text_title);
+        viewHolder.getTextView(R.id.text_price).setText("￥"+wares.getPrice());
     }
 }

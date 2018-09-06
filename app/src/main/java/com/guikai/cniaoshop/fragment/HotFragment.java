@@ -36,7 +36,9 @@ public class HotFragment extends Fragment {
     private int pageSize = 10;
 
     private List<Wares> datas;
-    private HotWaresAdapter mAdapter;
+//    private HotWaresAdapter mAdapter;
+    private HWAdatper mAdapter;
+
     private RecyclerView mRecyclerView;
     private MaterialRefreshLayout mRefreshLayout;
 
@@ -130,7 +132,8 @@ public class HotFragment extends Fragment {
 //                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //                mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 //                mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));
-                mRecyclerView.setAdapter(new HWAdatper(getContext(),datas));
+                mAdapter = new HWAdatper(getContext(),datas);
+                mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));
@@ -138,7 +141,7 @@ public class HotFragment extends Fragment {
 
                 //下拉刷新时 首先清空所有数据 重新从服务器获取数据 然后recy滚动到顶部，然后隐藏刷新控件
             case STATE_REFREH:
-                mAdapter.clearData();
+                mAdapter.clear();
                 mAdapter.addData(datas);
 
                 mRecyclerView.scrollToPosition(0);
