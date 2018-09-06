@@ -50,9 +50,6 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
         this.layoutResId = layoutResId;
     }
 
-
-
-
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup,  int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutResId, viewGroup, false);
@@ -66,8 +63,6 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
         convert((H)viewHoder, item);
     }
 
-
-
     @Override
     public int getItemCount() {
         if(datas==null || datas.size()<=0)
@@ -76,12 +71,10 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
         return datas.size();
     }
 
-
     public T getItem(int position) {
         if (position >= datas.size()) return null;
         return datas.get(position);
     }
-
 
     public void clear(){
         int itemCount = datas.size();
@@ -105,8 +98,6 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
             this.notifyItemRangeChanged(position, datas.size());
         }
     }
-
-
 
 
     /**

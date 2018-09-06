@@ -21,5 +21,4 @@ public abstract class SimpleAdapter<T> extends BaseAdapter<T,BaseViewHolder> {
         super(context, layoutResId, datas);
     }
 
-
 }
