@@ -44,7 +44,7 @@ public class CategoryFragment extends Fragment {
                 showCategoryData(categories);
 
                 if ((categories != null) && categories.size()>0)
-                    
+
             }
 
             @Override
