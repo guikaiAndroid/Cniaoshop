@@ -41,9 +41,9 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onSuccess(Call call, Response response, List<Category> categories) {
-                showCategoryData(categories);
+//                showCategoryData(categories);
 
-                if ((categories != null) && categories.size()>0)
+                if ((categories != null) && categories.size()>0);
 
             }
 

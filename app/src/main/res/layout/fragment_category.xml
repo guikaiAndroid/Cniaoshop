@@ -38,7 +38,6 @@
             android:layout_marginTop="10dp"
             app:overlay="false"
             app:wave_show="false"
-            app:progress_color="@array/material_colors"
             app:progress_show_circle_backgroud="false"
             app:wave_height_type="higher">
 
