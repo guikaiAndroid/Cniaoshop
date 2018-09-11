@@ -30,6 +30,6 @@
 
     <dimen name="ware_grid_img_width">100dp</dimen>
     <dimen name="ware_grid_img_height">100dp</dimen>
-    <dimen name="category_layout_width">120dp</dimen>
+    <dimen name="category_layout_width">100dp</dimen>
 
 </resources>
