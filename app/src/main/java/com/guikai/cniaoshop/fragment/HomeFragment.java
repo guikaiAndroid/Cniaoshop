@@ -170,23 +170,6 @@ public class HomeFragment extends Fragment {
         //时间
         mSliderLayout.setDuration(3000);
 
-
-//        mSliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int i, float v, int i1) {
-//                Log.d(TAG,"onPageScrolled");
-//            }
-//
-//            @Override
-//            public void onPageSelected(int i) {
-//                Log.d(TAG,"onPageSelected");
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int i) {
-//                Log.d(TAG,"onPageScrollStateChanged");
-//            }
-//        });
     }
 
 
