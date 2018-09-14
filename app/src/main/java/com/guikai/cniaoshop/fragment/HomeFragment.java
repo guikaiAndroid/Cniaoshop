@@ -18,7 +18,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
-import com.guikai.cniaoshop.adapter.CardViewtemDecortion;
+import com.guikai.cniaoshop.decoration.CardViewtemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.Campaign;

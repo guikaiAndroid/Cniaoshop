@@ -1,4 +1,4 @@
-package com.guikai.cniaoshop.adapter;
+package com.guikai.cniaoshop.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
