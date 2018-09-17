@@ -14,7 +14,6 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:isShowSearchView="true">
-
     </com.guikai.cniaoshop.widget.CnToolbar>
 
     <FrameLayout

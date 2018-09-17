@@ -27,14 +27,12 @@
             custom:pager_animation="Accordion"
             custom:auto_cycle="true"
             custom:indicator_visibility="visible"
-            custom:pager_animation_span="1100"
-            />
+            custom:pager_animation_span="1100" />
 
         <com.cjj.MaterialRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             app:overlay="false"
             app:wave_show="false"
             app:progress_show_circle_backgroud="false"
@@ -50,9 +48,5 @@
         </com.cjj.MaterialRefreshLayout>
 
     </LinearLayout>
-
-
-
-
 
 </LinearLayout>

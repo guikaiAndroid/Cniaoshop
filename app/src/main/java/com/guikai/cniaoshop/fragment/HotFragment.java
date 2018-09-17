@@ -125,12 +125,6 @@ public class HotFragment extends Fragment {
         switch (state) {
             //正常情况下获取数据
             case STATE_NORMAL:
-//                mAdapter = new HotWaresAdapter(datas);
-//
-//                mRecyclerView.setAdapter(mAdapter);
-//                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//                mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//                mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));
                 mAdapter = new HWAdatper(getContext(),datas);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

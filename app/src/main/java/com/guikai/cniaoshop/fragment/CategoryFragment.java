@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -61,38 +62,42 @@ public class CategoryFragment extends Fragment {
     private  static final int STATE_REFREH=1;
     private  static final int STATE_MORE=2;
 
-    private int state=STATE_NORMAL;
+    private int state = STATE_NORMAL;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         View view = inflater.inflate(R.layout.fragment_category,container,false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_category);
-        mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_category);
-        mRecyclerviewWares = (RecyclerView) view.findViewById(R.id.recyclerview_wares);
-        mRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh_layout);
+
+        initView(view);
         requestCategoryData();
         requestBannerData();
         initRefreshLayout();
         return view;
     }
 
-    private  void initRefreshLayout(){
+    private void initView(View view) {
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_category);
+        mSliderLayout = (SliderLayout) view.findViewById(R.id.slider_category);
+        mRecyclerviewWares = (RecyclerView) view.findViewById(R.id.recyclerview_wares);
+        mRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh_layout);
+    }
+
+    private void initRefreshLayout(){
 
         mRefreshLayout.setLoadMore(true);
         mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-
                 refreshData();
-
+                Toast.makeText(getActivity(),"数据已经是最新的啦",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
 
-                if(currPage <=totalPage)
+                if(currPage <=2)
                     loadMoreData();
                 else{
 //                    Toast.makeText()
@@ -105,18 +110,15 @@ public class CategoryFragment extends Fragment {
     private  void refreshData(){
 
         currPage =1;
-
         state=STATE_REFREH;
         requestWares(category_id);
 
     }
 
     private void loadMoreData(){
-
         currPage = ++currPage;
         state = STATE_MORE;
         requestWares(category_id);
-
     }
 
 
@@ -141,8 +143,9 @@ public class CategoryFragment extends Fragment {
     }
 
     private void showCategoryData(List<Category> categories) {
-        mCategoryAdapter = new CategoryAdapter(getContext(), categories);
 
+        mCategoryAdapter = new CategoryAdapter(getContext(), categories);
+        //通过CategoryAdapter回调接口，实现点击事件
         mCategoryAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -229,7 +232,6 @@ public class CategoryFragment extends Fragment {
 
                 currPage = waresPage.getCurrentPage();
                 totalPage = waresPage.getTotalPage();
-
                 showWaresData(waresPage.getList());
             }
 
@@ -260,9 +262,6 @@ public class CategoryFragment extends Fragment {
                     mWaresAdapter.addData(wares);
                 }
 
-
-
-
                 break;
 
             case STATE_REFREH:
@@ -278,11 +277,6 @@ public class CategoryFragment extends Fragment {
                 mRecyclerviewWares.scrollToPosition(mWaresAdapter.getDatas().size());
                 mRefreshLayout.finishRefreshLoadMore();
                 break;
-
-
-
-
-
         }
     }
 }
