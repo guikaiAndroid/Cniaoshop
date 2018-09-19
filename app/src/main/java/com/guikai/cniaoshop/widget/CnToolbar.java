@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class CnToolbar extends Toolbar {
     private View mView;
     private TextView mTextTitle;
     private TextView mSearchView;
-    private ImageButton mRightImageButton;
+    private Button mRightButton;
 
 
     public CnToolbar(Context context) {
@@ -43,40 +44,30 @@ public class CnToolbar extends Toolbar {
     @SuppressLint("RestrictedApi")
     public CnToolbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
-
         initView();
         setContentInsetsRelative(10,10);
 
-
-
-
         if(attrs !=null) {
-            @SuppressLint("RestrictedApi") final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
+            @SuppressLint("RestrictedApi")
+            final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.CnToolbar, defStyleAttr, 0);
 
-
-            @SuppressLint("RestrictedApi") final Drawable rightIcon = a.getDrawable(R.styleable.CnToolbar_rightButtonIcon);
+            @SuppressLint("RestrictedApi")
+            final Drawable rightIcon = a.getDrawable(R.styleable.CnToolbar_rightButtonIcon);
             if (rightIcon != null) {
                 //setNavigationIcon(navIcon);
                 setRightButtonIcon(rightIcon);
             }
 
-
-            @SuppressLint("RestrictedApi") boolean isShowSearchView = a.getBoolean(R.styleable.CnToolbar_isShowSearchView,false);
+            @SuppressLint("RestrictedApi")
+            boolean isShowSearchView = a.getBoolean(R.styleable.CnToolbar_isShowSearchView,false);
 
             if(isShowSearchView){
-
                 showSearchView();
                 hideTitleView();
-
             }
-
-
             a.recycle();
         }
-
     }
 
     private void initView() {
@@ -90,37 +81,42 @@ public class CnToolbar extends Toolbar {
 
             mTextTitle = (TextView) mView.findViewById(R.id.toolbar_title);
             mSearchView = (TextView) mView.findViewById(R.id.toolbar_searchview);
-            mRightImageButton = (ImageButton) mView.findViewById(R.id.toolbar_rightButton);
+            mRightButton = (Button) mView.findViewById(R.id.toolbar_rightButton);
 
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
-
             addView(mView, lp);
         }
-
-
 
     }
 
 
     public void  setRightButtonIcon(Drawable icon){
-
-        if(mRightImageButton !=null){
-
-            mRightImageButton.setImageDrawable(icon);
-            mRightImageButton.setVisibility(VISIBLE);
+        if(mRightButton !=null){
+            mRightButton.setBackground(icon);
+            mRightButton.setVisibility(VISIBLE);
         }
 
     }
 
 
-    public  void setRightButtonOnClickListener(OnClickListener li){
-
-        mRightImageButton.setOnClickListener(li);
+    public void setRightButtonOnClickListener(OnClickListener li){
+        mRightButton.setOnClickListener(li);
     }
 
+    public void setRightButtonText(CharSequence text){
+        mRightButton.setText(text);
+        mRightButton.setVisibility(VISIBLE);
+    }
 
+    public void setRightButtonText(int id){
+        setRightButtonText(getResources().getString(id));
+    }
 
+    public Button getRightButton(){
+
+        return this.mRightButton;
+    }
 
     @Override
     public void setTitle(int resId) {
@@ -136,20 +132,12 @@ public class CnToolbar extends Toolbar {
             mTextTitle.setText(title);
             showTitleView();
         }
-
-
-
-
-
     }
 
-
-
-    public  void showSearchView(){
+    public void showSearchView(){
 
         if(mSearchView !=null)
             mSearchView.setVisibility(VISIBLE);
-
     }
 
 
@@ -169,18 +157,6 @@ public class CnToolbar extends Toolbar {
             mTextTitle.setVisibility(GONE);
 
     }
-
-
-//
-//    private void ensureRightButtonView() {
-//        if (mRightImageButton == null) {
-//            mRightImageButton = new ImageButton(getContext(), null,
-//                    android.support.v7.appcompat.R.attr.toolbarNavigationButtonStyle);
-//            final LayoutParams lp = generateDefaultLayoutParams();
-//            lp.gravity = GravityCompat.START | (Gravity.VERTICAL_GRAVITY_MASK);
-//            mRightImageButton.setLayoutParams(lp);
-//        }
-//    }
 
 
 }
