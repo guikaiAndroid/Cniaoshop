@@ -27,7 +27,7 @@ public class HWAdatper extends SimpleAdapter<Wares> {
 
     public HWAdatper(Context context, List<Wares> datas) {
         super(context, R.layout.template_hot_wares, datas);
-        provider = new CartProvider(context);
+
     }
 
     @Override
@@ -41,8 +41,8 @@ public class HWAdatper extends SimpleAdapter<Wares> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                provider = new CartProvider(context);
                 provider.put(convertData(wares));
-
                 ToastUtils.show(context,"已添加到购物车");
             }
         });

@@ -39,13 +39,17 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     private CartAdapter mAdapter;
     private CartProvider cartProvider;
 
+    public CartProvider getCartProvider() {
+        return cartProvider;
+    }
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        initView(view);
-        cartProvider = new CartProvider(getContext());
 
+        cartProvider = new CartProvider(getContext());
+        initView(view);
         showData();
 
         return view;
@@ -55,7 +59,6 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     public void refData(){
         mAdapter.clear();
         List<ShoppingCart> carts = cartProvider.getAll();
-        Log.e("MainActivity刷新", "carts剩余长度"+carts.size());
         mAdapter.addData(carts);
         mAdapter.showTotalPrice();
     }
