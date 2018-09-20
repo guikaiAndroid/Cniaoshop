@@ -91,7 +91,7 @@ public class CnToolbar extends Toolbar {
     }
 
 
-    public void  setRightButtonIcon(Drawable icon){
+    public void setRightButtonIcon(Drawable icon){
         if(mRightButton !=null){
             mRightButton.setBackground(icon);
             mRightButton.setVisibility(VISIBLE);

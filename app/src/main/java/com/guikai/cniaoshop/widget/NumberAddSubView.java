@@ -1,11 +1,11 @@
 package com.guikai.cniaoshop.widget;
 
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.TintTypedArray;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -26,6 +26,7 @@ import com.guikai.cniaoshop.R;
  */
 public class NumberAddSubView extends LinearLayout implements View.OnClickListener {
 
+
     public static final String TAG="NumberAddSubView";
     public static final int DEFUALT_MAX=1000;
 
@@ -35,24 +36,30 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
     private OnButtonClickListener onButtonClickListener;
 
+
+
+
     private LayoutInflater mInflater;
 
-    private int value;
+
+    private  int value;
     private int minValue;
     private int maxValue=DEFUALT_MAX;
 
 
+
     public NumberAddSubView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
-    public NumberAddSubView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs,0);
+    public NumberAddSubView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
     @SuppressLint("RestrictedApi")
-    public NumberAddSubView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public NumberAddSubView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
         mInflater = LayoutInflater.from(context);
         initView();
 
@@ -82,10 +89,12 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
                 setEditTextBackground(etBackground);
 
 
+            @SuppressLint("RestrictedApi")
             Drawable buttonAddBackground = a.getDrawable(R.styleable.NumberAddSubView_buttonAddBackgroud);
             if(buttonAddBackground!=null)
                 setButtonAddBackgroud(buttonAddBackground);
 
+            @SuppressLint("RestrictedApi")
             Drawable buttonSubBackground = a.getDrawable(R.styleable.NumberAddSubView_buttonSubBackgroud);
             if(buttonSubBackground!=null)
                 setButtonSubBackgroud(buttonSubBackground);
@@ -96,6 +105,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
             a.recycle();
         }
     }
+
 
     private void initView(){
 
@@ -119,24 +129,26 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
     }
 
+
     @Override
-    public void onClick(View view) {
-        if(view.getId() == R.id.btn_add){
+    public void onClick(View v) {
+        if(v.getId() == R.id.btn_add){
 
             numAdd();
 
             if(onButtonClickListener !=null){
-                onButtonClickListener.onButtonAddClick(view,this.value);
+                onButtonClickListener.onButtonAddClick(v,this.value);
             }
         }
-        else if(view.getId()==R.id.btn_sub){
+        else if(v.getId()==R.id.btn_sub){
             numSub();
             if(onButtonClickListener !=null){
-                onButtonClickListener.onButtonSubClick(view,this.value);
+                onButtonClickListener.onButtonSubClick(v,this.value);
             }
 
         }
     }
+
 
     private void numAdd(){
 
@@ -225,5 +237,6 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         public void onButtonSubClick(View view, int value);
 
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.guikai.cniaoshop;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.guikai.cniaoshop.fragment.CategoryFragment;
 import com.guikai.cniaoshop.fragment.HomeFragment;
 import com.guikai.cniaoshop.fragment.HotFragment;
 import com.guikai.cniaoshop.fragment.MineFragment;
+import com.guikai.cniaoshop.widget.CnToolbar;
 import com.guikai.cniaoshop.widget.FragmentTabHost;
 
 import java.util.ArrayList;
@@ -26,13 +28,23 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTabHost mTabhost;
 
+    private CnToolbar mToolbar;
+
+    private CartFragment cartFragment;
+
     private List<Tab> mTabs = new ArrayList<>(5);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initToolBar();
         initTab();
+    }
+
+    private void initToolBar() {
+        mToolbar = (CnToolbar) findViewById(R.id.toolbar);
     }
 
     private void initTab() {
@@ -59,8 +71,42 @@ public class MainActivity extends AppCompatActivity {
             mTabhost.addTab(tabSpec,tab.getFragment(),null);
         }
 
+        //添加购物车的监听事件
+        mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                if (tabId == getString(R.string.cart)) {
+                    refData();
+                } else {
+                    mToolbar.showSearchView();
+                    mToolbar.hideTitleView();
+                    mToolbar.getRightButton().setVisibility(View.GONE);
+                }
+            }
+        });
+
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
         mTabhost.setCurrentTab(0);
+    }
+
+    private void refData() {
+        if(cartFragment ==null) {
+
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string.cart));
+
+            if (fragment != null) {
+
+                cartFragment = (CartFragment) fragment;
+
+                cartFragment.refData();
+                cartFragment.changeToolbar();
+            }
+        }
+        else
+        {
+            cartFragment.refData();
+            cartFragment.changeToolbar();
+        }
     }
 
     private View buildIndicator(Tab tab) {

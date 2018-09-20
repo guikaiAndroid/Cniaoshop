@@ -39,7 +39,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     private CartProvider cartProvider;
 
 
-    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         initView(view);
@@ -50,10 +50,6 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
-    public void delCart(View view){
-
-        mAdapter.delCart();
-    }
 
     public void refData(){
         mAdapter.clear();
@@ -104,6 +100,13 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         mTextTotal = (TextView) view.findViewById(R.id.txt_total);
         mBtnOrder = (Button) view.findViewById(R.id.btn_order);
         mBtnDel = (Button) view.findViewById(R.id.btn_del);
+
+        mBtnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.delCart();
+            }
+        });
     }
 
     @Override
