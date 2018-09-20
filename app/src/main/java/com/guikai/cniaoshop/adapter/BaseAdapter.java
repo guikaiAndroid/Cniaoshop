@@ -16,7 +16,7 @@ import java.util.List;
  * Creator:      Anding
  * Note:         公共的基类Adapter
  */
-public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder>{
+public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder>{
 
 
 
@@ -51,7 +51,7 @@ public abstract class BaseAdapter<T,H extends  BaseViewHolder> extends RecyclerV
     }
 
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup,  int viewType) {
+    public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutResId, viewGroup, false);
         BaseViewHolder vh = new BaseViewHolder(view,mOnItemClickListener);
         return vh;

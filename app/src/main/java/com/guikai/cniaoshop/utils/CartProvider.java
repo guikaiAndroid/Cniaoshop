@@ -2,6 +2,7 @@ package com.guikai.cniaoshop.utils;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.gson.reflect.TypeToken;

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,13 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     public void refData(){
         mAdapter.clear();
         List<ShoppingCart> carts = cartProvider.getAll();
+        Log.e("MainActivity刷新", "carts剩余长度"+carts.size());
         mAdapter.addData(carts);
         mAdapter.showTotalPrice();
     }
 
     private void showData(){
+
         List<ShoppingCart> carts = cartProvider.getAll();
         mAdapter = new CartAdapter(getContext(),carts,mCheckBox,mTextTotal);
         mRecyclerView.setAdapter(mAdapter);

@@ -67,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         for (Tab tab: mTabs){
 
             TabHost.TabSpec tabSpec = mTabhost.newTabSpec(getString(tab.getTitle()));
+
             tabSpec.setIndicator(buildIndicator(tab));
+
             mTabhost.addTab(tabSpec,tab.getFragment(),null);
         }
 
@@ -75,9 +77,13 @@ public class MainActivity extends AppCompatActivity {
         mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
+
                 if (tabId == getString(R.string.cart)) {
+
                     refData();
+
                 } else {
+
                     mToolbar.showSearchView();
                     mToolbar.hideTitleView();
                     mToolbar.getRightButton().setVisibility(View.GONE);
@@ -90,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refData() {
-        if(cartFragment ==null) {
+
+        if(cartFragment == null) {
 
             Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string.cart));
 
