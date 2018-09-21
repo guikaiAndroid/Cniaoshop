@@ -39,11 +39,6 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     private CartAdapter mAdapter;
     private CartProvider cartProvider;
 
-    public CartProvider getCartProvider() {
-        return cartProvider;
-    }
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);

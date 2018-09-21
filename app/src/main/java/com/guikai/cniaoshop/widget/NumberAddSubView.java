@@ -28,7 +28,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
 
     public static final String TAG="NumberAddSubView";
-    public static final int DEFUALT_MAX=1000;
+    public static final int DEFUALT_MAX = 100;
 
     private TextView mEtxtNum;
     private Button mBtnAdd;
@@ -36,13 +36,10 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
     private OnButtonClickListener onButtonClickListener;
 
-
-
-
     private LayoutInflater mInflater;
 
 
-    private  int value;
+    private int value;
     private int minValue;
     private int maxValue=DEFUALT_MAX;
 
@@ -155,7 +152,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
         getValue();
 
-        if(this.value<=maxValue)
+        if(this.value <= maxValue)
             this.value=+this.value+1;
 
         mEtxtNum.setText(value+"");

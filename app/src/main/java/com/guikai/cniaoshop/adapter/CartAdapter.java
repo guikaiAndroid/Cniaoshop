@@ -90,15 +90,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
     public void delCart(){
         if(!isNull())
             return ;
-//        for (ShoppingCart cart : datas){
-//
-//            if(cart.isChecked()){
-//                int position = datas.indexOf(cart);
-//                cartProvider.delete(cart);
-//                datas.remove(cart);
-//                notifyItemRemoved(position);
-//            }
-//        }
+
         for(Iterator iterator = datas.iterator(); iterator.hasNext();){
             ShoppingCart cart = (ShoppingCart) iterator.next();
             if(cart.isChecked()){
@@ -127,6 +119,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         numberAddSubView.setOnButtonClickListener(new NumberAddSubView.OnButtonClickListener() {
             @Override
             public void onButtonAddClick(View view, int value) {
+                cartProvider = new CartProvider(context);
                 item.setCount(value);
                 cartProvider.update(item);
                 showTotalPrice();
@@ -134,7 +127,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
 
             @Override
             public void onButtonSubClick(View view, int value) {
-
+                cartProvider = new CartProvider(context);
                 item.setCount(value);
                 cartProvider.update(item);
                 showTotalPrice();
