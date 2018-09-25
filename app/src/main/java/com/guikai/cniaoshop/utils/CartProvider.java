@@ -13,7 +13,7 @@ import java.util.List;
 //提供购物车数据的类
 public class CartProvider {
 
-    public static final String CART_JSON = "cart_json";
+    private static final String CART_JSON = "cart_json";
 
     private SparseArray<ShoppingCart> datas = null;
 
@@ -58,7 +58,7 @@ public class CartProvider {
     }
 
     //从SharePreference中读取数据
-    public List<ShoppingCart> getDataFromLocal() {
+    private List<ShoppingCart> getDataFromLocal() {
         String json = PreferencesUtils.getString(mContext, CART_JSON);
         List<ShoppingCart> carts = null;
         if (json != null) {
@@ -67,12 +67,12 @@ public class CartProvider {
         return carts;
     }
 
-    public void commit() {
+    private void commit() {
         List<ShoppingCart> carts = sparseToList();
         PreferencesUtils.putString(mContext,CART_JSON, JSONUtil.toJSON(carts));
     }
 
-    public List<ShoppingCart> sparseToList() {
+    private List<ShoppingCart> sparseToList() {
 
         int size = datas.size();
         List<ShoppingCart> list = new ArrayList<>(size);
