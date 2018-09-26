@@ -19,7 +19,7 @@ import okhttp3.Response;
  */
 public abstract class BaseCallback<T> {
 
-    Type mType;
+    public Type mType;
 
     static Type getSuperclassTypeParameter(Class<?> subclass)
     {
