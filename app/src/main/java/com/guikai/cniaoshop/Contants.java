@@ -20,6 +20,7 @@ public class Contants {
         public static final String BANNER = BASE_URL + "banner/query";
 
         public static final String WARES_LIST = BASE_URL + "wares/list";
+        public static final String WARES_CAMPAIGN_LIST = BASE_URL + "wares/campaign/list";
 
         public static final String CATEGORY_LIST = BASE_URL + "category/list";
 
