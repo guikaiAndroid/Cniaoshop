@@ -26,8 +26,8 @@ public class HWAdatper extends SimpleAdapter<Wares> {
     CartProvider provider;
 
     public HWAdatper(Context context, List<Wares> datas) {
-        super(context, R.layout.template_hot_wares, datas);
 
+        super(context, R.layout.template_hot_wares, datas);
     }
 
     @Override
@@ -37,15 +37,18 @@ public class HWAdatper extends SimpleAdapter<Wares> {
 
         viewHolder.getTextView(R.id.text_title).setText(wares.getName());
         viewHolder.getTextView(R.id.text_price).setText("￥"+wares.getPrice());
+
         Button button= viewHolder.getButton(R.id.btn_add);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                provider = new CartProvider(context);
-                provider.put(convertData(wares));
-                ToastUtils.show(context,"已添加到购物车");
-            }
-        });
+        if (button != null) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    provider = new CartProvider(context);
+                    provider.put(convertData(wares));
+                    ToastUtils.show(context, "已添加到购物车");
+                }
+            });
+        }
     }
 
     public ShoppingCart convertData(Wares item) {
@@ -58,5 +61,13 @@ public class HWAdatper extends SimpleAdapter<Wares> {
         cart.setPrice(item.getPrice());
 
         return cart;
+    }
+
+    public void resetLayout(int layoutId){
+
+        this.layoutResId  = layoutId;
+
+        notifyDataSetChanged();
+
     }
 }

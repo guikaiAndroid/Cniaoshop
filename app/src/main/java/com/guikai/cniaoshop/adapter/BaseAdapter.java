@@ -16,7 +16,7 @@ import java.util.List;
  * Creator:      Anding
  * Note:         公共的基类Adapter
  */
-public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder>{
+public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder> {
 
 
 
@@ -24,10 +24,9 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
 
     protected final Context context;
 
-    protected final int layoutResId;
+    protected int layoutResId;
 
     protected List<T> datas;
-
 
     private OnItemClickListener mOnItemClickListener = null;
 
@@ -36,8 +35,6 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
     public  interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
-
-
 
     public BaseAdapter(Context context, int layoutResId) {
         this(context, layoutResId, null);
@@ -96,6 +93,32 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
 
             this.datas.addAll(datas);
             this.notifyItemRangeChanged(position, datas.size());
+        }
+    }
+
+    public void refreshData(List<T> list) {
+
+        if (list != null && list.size()>0) {
+            clear();
+
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                datas.add(i, list.get(i));
+                notifyItemInserted(i);
+            }
+        }
+    }
+
+    public void loadMoreData(List<T> list) {
+        if (list != null && list.size()>0) {
+
+            int size = list.size();
+            int begin = datas.size();
+
+            for (int i = 0; i < size; i++) {
+                datas.add(list.get(i));
+                notifyItemInserted(i+begin);
+            }
         }
     }
 

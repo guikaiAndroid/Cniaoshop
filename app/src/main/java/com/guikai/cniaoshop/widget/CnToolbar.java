@@ -1,8 +1,10 @@
 package com.guikai.cniaoshop.widget;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
@@ -90,13 +92,16 @@ public class CnToolbar extends Toolbar {
 
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void setRightButtonIcon(Drawable icon){
         if(mRightButton !=null){
             mRightButton.setBackground(icon);
             mRightButton.setVisibility(VISIBLE);
         }
+    }
 
+    public void setRightButtonIcon(int icon) {
+        setRightButtonIcon(getResources().getDrawable(icon,null));
     }
 
 
@@ -107,10 +112,6 @@ public class CnToolbar extends Toolbar {
     public void setRightButtonText(CharSequence text){
         mRightButton.setText(text);
         mRightButton.setVisibility(VISIBLE);
-    }
-
-    public void setRightButtonText(int id){
-        setRightButtonText(getResources().getString(id));
     }
 
     public Button getRightButton(){

@@ -1,5 +1,8 @@
 package com.guikai.cniaoshop.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -99,23 +102,38 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
 
         @Override
         public void onClick(View view) {
-            HomeCampaign homeCampaign = mDatas.get(getLayoutPosition());
             if (mListener != null) {
-                switch (view.getId()) {
-                    case R.id.imgview_big:
-                        mListener.onClick(view, homeCampaign.getCpOne());
-                        break;
-
-                    case R.id.imgview_small_top:
-                        mListener.onClick(view, homeCampaign.getCpTwo());
-                        break;
-
-                    case R.id.imgview_small_bottom:
-                        mListener.onClick(view, homeCampaign.getCpThree());
-                        break;
-
-                }
+                anim(view);
             }
+        }
+
+        private  void anim(final View v){
+
+            ObjectAnimator animator =  ObjectAnimator.ofFloat(v, "rotationX", 0.0F, 360.0F)
+                    .setDuration(200);
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+
+                    HomeCampaign campaign = mDatas.get(getLayoutPosition());
+
+                    switch (v.getId()){
+
+                        case  R.id.imgview_big:
+                            mListener.onClick(v, campaign.getCpOne());
+                            break;
+
+                        case  R.id.imgview_small_top:
+                            mListener.onClick(v, campaign.getCpTwo());
+                            break;
+
+                        case R.id.imgview_small_bottom:
+                            mListener.onClick(v,campaign.getCpThree());
+                            break;
+                    }
+                }
+            });
+            animator.start();
         }
     }
 

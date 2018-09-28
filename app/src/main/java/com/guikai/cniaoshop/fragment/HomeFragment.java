@@ -1,5 +1,6 @@
 package com.guikai.cniaoshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
+import com.guikai.cniaoshop.WareListActivity;
 import com.guikai.cniaoshop.decoration.CardViewtemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
 import com.guikai.cniaoshop.bean.Banner;
@@ -130,13 +132,17 @@ public class HomeFragment extends Fragment {
     private void initData(List<HomeCampaign> homeCampaigns) {
 
         mAdatper = new HomeCatgoryAdapter(homeCampaigns, getActivity());
-        //设置点击事件
+
+        //设置点击事件 跳转传值到商品列表页面
         mAdatper.setOncampaignClickListener(new HomeCatgoryAdapter.OncampaignClickListener() {
             @Override
             public void onClick(View view, Campaign campaign) {
-                Toast.makeText(getActivity(), "title:"+campaign.getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent =new Intent(getActivity(), WareListActivity.class);
+                intent.putExtra(Contants.COMPAINGAIN_ID, campaign.getId());
+                startActivity(intent);
             }
         });
+
         mRecyclerView.setAdapter(mAdatper);
         mRecyclerView.addItemDecoration(new CardViewtemDecortion());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

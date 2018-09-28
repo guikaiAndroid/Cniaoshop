@@ -1,6 +1,7 @@
 package com.guikai.cniaoshop.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
@@ -28,12 +29,9 @@ import okhttp3.Response;
  */
 public class Pager {
 
-
     private static Builder builder;
 
-
     private OkHttpHelper httpHelper;
-
 
     private  static final int STATE_NORMAL=0;
     private  static final int STATE_REFREH=1;
@@ -41,16 +39,12 @@ public class Pager {
 
     private int state=STATE_NORMAL;
 
-
-
-
     private  Pager(){
 
         httpHelper = OkHttpHelper.getInstance();
         initRefreshLayout();
 
     }
-
 
     public  static Builder newBuilder(){
 
@@ -69,11 +63,7 @@ public class Pager {
 
     }
 
-
-
-
     private void initRefreshLayout(){
-
 
         builder.mRefreshLayout.setLoadMore(builder.canLoadMore);
 
@@ -83,7 +73,6 @@ public class Pager {
                 builder.mRefreshLayout.setLoadMore(builder.canLoadMore);
                 refresh();
             }
-
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
@@ -105,7 +94,7 @@ public class Pager {
     private void requestData(){
 
         String url = buildUrl();
-
+        Log.e("获取网络数据", "url:"+url);
         httpHelper.get(url, new RequestCallBack(builder.mContext));
     }
 
@@ -167,7 +156,6 @@ public class Pager {
     private String buildUrl(){
         return builder.mUrl +"?"+buildUrlParams();
     }
-
 
     private String buildUrlParams() {
 
