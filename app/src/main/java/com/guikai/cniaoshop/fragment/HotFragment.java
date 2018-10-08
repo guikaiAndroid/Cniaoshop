@@ -34,9 +34,8 @@ public class HotFragment extends Fragment {
     private HWAdatper mAdapter;
 
     private RecyclerView mRecyclerView;
+    //引用第三方库 下拉刷新和加载更多数据
     private MaterialRefreshLayout mRefreshLayout;
-
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -45,6 +44,7 @@ public class HotFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recyclerview);
         mRefreshLayout = view.findViewById(R.id.refresh_view);
 
+        //封装分页逻辑
         Pager pager = Pager.newBuilder()
                 .setUrl(Contants.API.WARES_HOT)
                 .setLoadMore(true)

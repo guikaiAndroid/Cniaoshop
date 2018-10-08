@@ -97,7 +97,7 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
 
-                if(currPage <=2)
+                if(currPage <= 2)
                     loadMoreData();
                 else{
 //                    Toast.makeText()
@@ -120,8 +120,6 @@ public class CategoryFragment extends Fragment {
         state = STATE_MORE;
         requestWares(category_id);
     }
-
-
 
     private void requestCategoryData() {
         mHttphelper.get(Contants.API.CATEGORY_LIST, new SpotsCallBack<List<Category>>(getContext()) {
@@ -199,7 +197,7 @@ public class CategoryFragment extends Fragment {
         }
 
 
-        mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
         mSliderLayout.setCustomAnimation(new DescriptionAnimation());
         mSliderLayout.setPresetTransformer(SliderLayout.Transformer.RotateUp);
         mSliderLayout.setDuration(3000);

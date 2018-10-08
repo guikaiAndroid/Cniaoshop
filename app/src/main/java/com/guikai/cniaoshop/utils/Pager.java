@@ -33,20 +33,20 @@ public class Pager {
 
     private OkHttpHelper httpHelper;
 
-    private  static final int STATE_NORMAL=0;
-    private  static final int STATE_REFREH=1;
-    private  static final int STATE_MORE=2;
+    private static final int STATE_NORMAL=0;
+    private static final int STATE_REFREH=1;
+    private static final int STATE_MORE=2;
 
     private int state=STATE_NORMAL;
 
-    private  Pager(){
+    private Pager(){
 
         httpHelper = OkHttpHelper.getInstance();
         initRefreshLayout();
 
     }
 
-    public  static Builder newBuilder(){
+    public static Builder newBuilder(){
 
         builder = new Builder();
         return builder;
@@ -77,7 +77,7 @@ public class Pager {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
 
-                if(builder.pageIndex<=3)
+                if(builder.pageIndex <= 3)
                     loadMore();
                 else{
                     Toast.makeText(builder.mContext, "无更多数据", Toast.LENGTH_LONG).show();
@@ -273,10 +273,10 @@ public class Pager {
         public void onError(Call call, Response response, int code, Exception e) {
             Toast.makeText(builder.mContext,"加载数据失败",Toast.LENGTH_LONG).show();
 
-            if(STATE_REFREH==state)   {
+            if(STATE_REFREH==state) {
                 builder.mRefreshLayout.finishRefresh();
             }
-            else  if(STATE_MORE == state){
+            else if(STATE_MORE == state) {
 
                 builder.mRefreshLayout.finishRefreshLoadMore();
             }
@@ -287,11 +287,10 @@ public class Pager {
             dismissDialog();
             Toast.makeText(builder.mContext,"请求出错："+e.getMessage(),Toast.LENGTH_LONG).show();
 
-            if(STATE_REFREH==state)   {
+            if (STATE_REFREH==state) {
                 builder.mRefreshLayout.finishRefresh();
             }
-            else  if(STATE_MORE == state){
-
+            else if (STATE_MORE == state) {
                 builder.mRefreshLayout.finishRefreshLoadMore();
             }
         }

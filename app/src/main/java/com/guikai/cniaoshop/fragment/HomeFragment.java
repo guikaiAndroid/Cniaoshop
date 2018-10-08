@@ -2,8 +2,7 @@ package com.guikai.cniaoshop.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,6 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.WareListActivity;
@@ -37,21 +35,17 @@ import okhttp3.Response;
 
 public class HomeFragment extends Fragment {
 
+    //轮播图的加载使用第三方库
     private SliderLayout mSliderLayout;
     private RecyclerView mRecyclerView;
     private HomeCatgoryAdapter mAdatper;
 
     private static final String TAG="HomeFragment";
 
-    private Gson mGson = new Gson();
-
-    private List<Banner> mBanner;
-
+    //对OkHttp3的封装 单例模式
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container,false);
         mSliderLayout = (SliderLayout) view.findViewById(R.id.slider);
@@ -86,7 +80,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(Call call, Response response, List<Banner> banners) {
 
-                Log.e("banner: ",banners.size()+"");
+                Log.e("首页HomeFragment轮播图数量: ",banners.size()+"");
                 showSliderViews(banners);
 
             }
@@ -116,7 +110,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onSuccess(Call call, Response response, List<HomeCampaign> homeCampaigns) {
-                Log.e("首页homeCampaigns商品显示成功: ",homeCampaigns.size()+"");
+                Log.e("首页HomeFragment商品数量: ",homeCampaigns.size()+"");
                 initData(homeCampaigns);
             }
 
