@@ -11,11 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.gson.Gson;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
@@ -27,7 +27,6 @@ import com.guikai.cniaoshop.bean.Campaign;
 import com.guikai.cniaoshop.bean.HomeCampaign;
 import com.guikai.cniaoshop.http.BaseCallback;
 import com.guikai.cniaoshop.http.OkHttpHelper;
-import com.guikai.cniaoshop.widget.CustomSliderView;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,7 +64,7 @@ public class HomeFragment extends Fragment {
 
     private void requestImages() {
 
-        String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
+        String url = Contants.API.BANNER+"?type=1";
 
         httpHelper.get(url, new BaseCallback<List<Banner>>() {
 
@@ -88,9 +87,8 @@ public class HomeFragment extends Fragment {
             public void onSuccess(Call call, Response response, List<Banner> banners) {
 
                 Log.e("banner: ",banners.size()+"");
-                mBanner = banners;
+                showSliderViews(banners);
 
-                initSlider();
             }
 
             @Override
@@ -151,18 +149,16 @@ public class HomeFragment extends Fragment {
 
 
     //引入轮播图github框架
-    private void initSlider() {
+    private void showSliderViews(List<Banner> banners) {
 
-        if (mBanner != null) {
-            for (Banner banner : mBanner) {
+        if (banners != null) {
+            for (Banner banner : banners) {
 
-                CustomSliderView customSliderView = new CustomSliderView(getActivity());
-                customSliderView
-                        .description(banner.getName())
-                        .image(banner.getImgUrl())
-                        .setScaleType(BaseSliderView.ScaleType.Fit);
-
-                mSliderLayout.addSlider(customSliderView);
+                DefaultSliderView sliderView = new DefaultSliderView(this.getActivity());
+                sliderView.image(banner.getImgUrl());
+                sliderView.description(banner.getName());
+                sliderView.setScaleType(BaseSliderView.ScaleType.Fit);
+                mSliderLayout.addSlider(sliderView);
             }
         }
 
