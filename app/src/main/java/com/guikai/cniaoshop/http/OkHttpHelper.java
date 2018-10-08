@@ -27,7 +27,6 @@ import okhttp3.Response;
  */
 public class OkHttpHelper {
 
-
     private static OkHttpClient okHttpClient;
 
     private Gson gson;

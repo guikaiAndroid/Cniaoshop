@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private HomeCatgoryAdapter mAdatper;
 
-    private static final  String TAG="HomeFragment";
+    private static final String TAG="HomeFragment";
 
     private Gson mGson = new Gson();
 
@@ -150,7 +150,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     //引入轮播图github框架
     private void initSlider() {
 
@@ -177,7 +176,6 @@ public class HomeFragment extends Fragment {
         mSliderLayout.setDuration(3000);
 
     }
-
 
     @Override
     public void onDestroy() {

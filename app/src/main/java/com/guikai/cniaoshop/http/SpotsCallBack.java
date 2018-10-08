@@ -28,11 +28,11 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
                       .build();
     }
 
-    public  void showDialog(){
+    public void showDialog(){
         mDialog.show();
     }
 
-    public  void dismissDialog(){
+    public void dismissDialog(){
         mDialog.dismiss();
     }
 
