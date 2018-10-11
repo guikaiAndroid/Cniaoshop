@@ -10,6 +10,7 @@ package com.guikai.cniaoshop;
 public class Contants {
 
     public static final String  COMPAINGAIN_ID="compaigin_id";
+    public static final String  WARE="ware";
 
     public static class API {
 

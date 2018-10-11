@@ -6,6 +6,7 @@ import android.util.SparseArray;
 
 import com.google.gson.reflect.TypeToken;
 import com.guikai.cniaoshop.bean.ShoppingCart;
+import com.guikai.cniaoshop.bean.Wares;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,11 @@ public class CartProvider {
         }
         datas.put(cart.getId().intValue(),temp);
         commit();
+    }
+
+    public void put(Wares wares) {
+        ShoppingCart cart = convertData(wares);
+        put(cart);
     }
 
     public void update(ShoppingCart cart) {
@@ -91,5 +97,17 @@ public class CartProvider {
                 datas.put(cart.getId().intValue(),cart);
             }
         }
+    }
+
+    public ShoppingCart convertData(Wares item) {
+        ShoppingCart cart = new ShoppingCart();
+
+        cart.setId(item.getId());
+        cart.setDescription(item.getDescription());
+        cart.setImgUrl(item.getImgUrl());
+        cart.setPrice(item.getPrice());
+        cart.setName(item.getName());
+
+        return cart;
     }
 }
