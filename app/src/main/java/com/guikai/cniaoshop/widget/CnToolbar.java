@@ -68,6 +68,11 @@ public class CnToolbar extends Toolbar {
                 showSearchView();
                 hideTitleView();
             }
+
+            CharSequence rightButtonText = a.getText(R.styleable.CnToolbar_rightButtonText);
+            if(rightButtonText !=null){
+                setRightButtonText(rightButtonText);
+            }
             a.recycle();
         }
     }
