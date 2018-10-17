@@ -38,12 +38,11 @@
 
         </activity>
 
-        <activity android:name=".WareListActivity">
+        <activity android:name=".WareListActivity"> </activity>
 
-        </activity>
+        <activity android:name=".WareDetailActivity"> </activity>
 
-        <activity android:name=".WareDetailActivity">
-        </activity>
+        <activity android:name=".LoginActivity"> </activity>
 
 
         <activity
