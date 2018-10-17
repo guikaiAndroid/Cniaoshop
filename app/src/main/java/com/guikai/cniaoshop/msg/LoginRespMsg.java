@@ -21,5 +21,6 @@ public class LoginRespMsg<T> extends BaseRespMsg {
     public void setToken(String token) {
         this.token = token;
     }
-    }
+
 }
+
