@@ -26,11 +26,7 @@
         android:padding="@dimen/largePadding">
 
 
-
-
-
-
-        <cniao5.com.cniao5shop.widget.ClearEditText
+        <com.guikai.cniaoshop.widget.ClearEditText
             android:id="@+id/etxt_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,14 +34,13 @@
             android:drawablePadding="20dp"
             android:hint="请输入手机号码"
             style="@style/editText_base"
-            android:inputType="phone"
-            />
+            android:inputType="phone" />
 
         <View
             style="@style/line_vertical"/>
 
 
-        <cniao5.com.cniao5shop.widget.ClearEditText
+        <com.guikai.cniaoshop.widget.ClearEditText
             android:id="@+id/etxt_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,12 +48,9 @@
             android:drawablePadding="20dp"
             android:hint="请输入登录密码"
             style="@style/editText_base"
-            android:inputType="textPassword"
-            />
-
+            android:inputType="textPassword" />
 
     </LinearLayout>
-
 
 
     <Button
@@ -70,9 +62,6 @@
         android:layout_marginTop="30dp"
         android:layout_margin="20dp"
         />
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
