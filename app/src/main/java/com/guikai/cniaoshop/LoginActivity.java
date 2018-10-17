@@ -1,13 +1,11 @@
 package com.guikai.cniaoshop;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.guikai.cniaoshop.bean.User;
 import com.guikai.cniaoshop.http.OkHttpHelper;
@@ -80,11 +78,24 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("phone",phone);
                 params.put("password", DESUtil.encode(Contants.DES_KEY, pwd));
 
+                //把map中的用户信息发送给服务器，获取数据
                 okHttpHelper.post(Contants.API.LOGIN, params, new SpotsCallBack<LoginRespMsg<User>>(getApplicationContext()) {
 
                     @Override
                     public void onSuccess(Call call, Response response, LoginRespMsg<User> userLoginRespMsg) {
                         CniaoApplication application = CniaoApplication.getmInstance();
+                        //将从服务器获取的存入本地share
+                        ToastUtils.show(LoginActivity.this,userLoginRespMsg.getData()+"");
+                        application.putUser(userLoginRespMsg.getData(), userLoginRespMsg.getToken());
+
+                        //登录成功 结束当前页面，返回值给上一个fragment 我的页面
+                        if (application.getIntent() == null) {
+                            setResult(RESULT_OK);
+                            finish();
+                        } else {
+                            application.jumpToTargetActivity(LoginActivity.this);
+                            finish();
+                        }
                     }
 
                     @Override

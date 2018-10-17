@@ -37,9 +37,7 @@
             style="@style/editText_base"
             android:inputType="phone" />
 
-        <View
-            style="@style/line_vertical"/>
-
+        <View style="@style/line_vertical"/>
 
         <com.guikai.cniaoshop.widget.ClearEditText
             android:id="@+id/etxt_pwd"
@@ -52,7 +50,6 @@
             android:inputType="textPassword" />
 
     </LinearLayout>
-
 
     <Button
         android:id="@+id/btn_login"
