@@ -2,11 +2,14 @@ package com.guikai.cniaoshop.http;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.guikai.cniaoshop.CniaoApplication;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +29,12 @@ import okhttp3.Response;
  * Note:         封装OkHttp请求
  */
 public class OkHttpHelper {
+
+    public static final int TOKEN_MISSING=401;// token 丢失
+    public static final int TOKEN_ERROR=402; // token 错误
+    public static final int TOKEN_EXPIRE=403; // token 过期
+
+    public static final String TAG="OkHttpHelper";
 
     private static OkHttpClient okHttpClient;
 
@@ -52,11 +61,15 @@ public class OkHttpHelper {
         return new OkHttpHelper();
     }
 
-    public void get(String url, BaseCallback callback) {
+    public void get(String url, Map<String, String> params, BaseCallback callback) {
 
-        Request request = buildRequset(url, null, HttpMethodType.GET);
+        Request request = buildRequset(url, params, HttpMethodType.GET);
 
         doRequest(request,callback);
+    }
+
+    public void get(String url, BaseCallback callback) {
+        get(url,null,callback);
     }
 
     public void post(String url, Map<String, String> params, BaseCallback callback) {
@@ -99,11 +112,24 @@ public class OkHttpHelper {
                             callbackError(callback, response, e);
                         }
                     }
+                } else if(response.code() == TOKEN_ERROR||response.code() == TOKEN_EXPIRE ||response.code() == TOKEN_MISSING ){
+
+                    callbackTokenError(callback,response);
                 }
                 else {
                     callback.onError(call,response,response.code(),null);
                 }
 
+            }
+        });
+    }
+
+    private void callbackTokenError(final  BaseCallback callback , final Response response ){
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onTokenError(response,response.code());
             }
         });
     }
@@ -154,6 +180,9 @@ public class OkHttpHelper {
         builder.url(url);
 
         if (methodType == HttpMethodType.GET) {
+
+            url = buildUrlParams(url,params);
+            builder.url(url);
             builder.get();
         }
         else if (methodType == HttpMethodType.POST) {
@@ -174,9 +203,43 @@ public class OkHttpHelper {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 builder.add(entry.getKey(), entry.getValue());
             }
+
+            String token = CniaoApplication.getmInstance().getToken();
+            if(!TextUtils.isEmpty(token))
+                builder.add("token", token);
+
         }
 
         return builder.build();
+    }
+
+    private String buildUrlParams(String url, Map<String, String> params) {
+
+        if(params == null)
+            params = new HashMap<>(1);
+
+        String token = CniaoApplication.getmInstance().getToken();
+        if(!TextUtils.isEmpty(token))
+            params.put("token",token);
+
+
+        StringBuffer sb = new StringBuffer();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            sb.append(entry.getKey() + "=" + entry.getValue());
+            sb.append("&");
+        }
+        String s = sb.toString();
+        if (s.endsWith("&")) {
+            s = s.substring(0, s.length() - 1);
+        }
+
+        if(url.indexOf("?")>0){
+            url = url +"&"+s;
+        }else{
+            url = url +"?"+s;
+        }
+
+        return url;
     }
 
     enum HttpMethodType{

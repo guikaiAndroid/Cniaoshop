@@ -2,6 +2,12 @@ package com.guikai.cniaoshop.http;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+
+import com.guikai.cniaoshop.CniaoApplication;
+import com.guikai.cniaoshop.LoginActivity;
+import com.guikai.cniaoshop.R;
+import com.guikai.cniaoshop.utils.ToastUtils;
 
 import java.io.IOException;
 
@@ -53,5 +59,14 @@ public abstract class SpotsCallBack<T> extends BaseCallback<T> {
     @Override
     public void onResponse(Response response) {
         dismissDialog();
+    }
+
+    @Override
+    public void onTokenError(Response response, int code) {
+        ToastUtils.show(mContext, code+"");
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        mContext.startActivity(intent);
+
+        CniaoApplication.getmInstance().clearUser();
     }
 }

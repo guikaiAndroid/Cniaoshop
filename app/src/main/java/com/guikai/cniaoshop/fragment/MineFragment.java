@@ -1,9 +1,11 @@
 package com.guikai.cniaoshop.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         mbtnLogout = view.findViewById(R.id.btn_logout);
         mImageHead.setOnClickListener(this);
         mTexUserName.setOnClickListener(this);
+        mbtnLogout.setOnClickListener(this);
     }
 
 
@@ -51,6 +54,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_head:
+                toLogin();
+                break;
             case R.id.text_username:
                 toLogin();
                 break;
@@ -85,6 +90,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             }
         } else {
             mTexUserName.setText(R.string.to_login);
+            mImageHead.setImageResource(R.drawable.default_head);
             mbtnLogout.setVisibility(View.GONE);
         }
     }

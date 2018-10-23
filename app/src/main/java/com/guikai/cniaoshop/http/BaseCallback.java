@@ -49,4 +49,7 @@ public abstract class BaseCallback<T> {
 
     public abstract void onError(Call call, Response response, int code, Exception e);
 
+    public abstract void onTokenError(Response response, int code);
+
+
 }

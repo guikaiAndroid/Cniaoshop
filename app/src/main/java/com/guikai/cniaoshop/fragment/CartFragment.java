@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,26 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.MainActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.CartAdapter;
 import com.guikai.cniaoshop.adapter.decoration.DividerItemDecortion;
 import com.guikai.cniaoshop.bean.ShoppingCart;
+import com.guikai.cniaoshop.bean.User;
+import com.guikai.cniaoshop.http.OkHttpHelper;
+import com.guikai.cniaoshop.http.SpotsCallBack;
 import com.guikai.cniaoshop.utils.CartProvider;
 import com.guikai.cniaoshop.widget.CnToolbar;
 
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Response;
+
 public class CartFragment extends Fragment implements View.OnClickListener{
+
+    private static final String TAG = "CartFragment";
 
     public static final int ACTION_EDIT=1;
     public static final int ACTION_CAMPLATE=2;
@@ -37,6 +47,8 @@ public class CartFragment extends Fragment implements View.OnClickListener{
 
     private CartAdapter mAdapter;
     private CartProvider cartProvider;
+    
+    private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -107,6 +119,13 @@ public class CartFragment extends Fragment implements View.OnClickListener{
                 mAdapter.delCart();
             }
         });
+
+        mBtnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toOrder();
+            }
+        });
     }
 
     @Override
@@ -120,6 +139,20 @@ public class CartFragment extends Fragment implements View.OnClickListener{
 
             hideDelControl();
         }
+    }
+
+    private void toOrder() {
+        httpHelper.get(Contants.API.USER_DETAIL, new SpotsCallBack<User>(getActivity()) {
+            @Override
+            public void onSuccess(Call call, Response response, User o) {
+                Log.e(TAG, "onSuccess: "+response.code());
+            }
+
+            @Override
+            public void onError(Call call, Response response, int code, Exception e) {
+                Log.e(TAG, "onError: "+response.code());
+            }
+        });
     }
 
     private void showDelControl(){
