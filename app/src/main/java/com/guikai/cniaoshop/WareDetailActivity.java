@@ -27,7 +27,7 @@ import dmax.dialog.SpotsDialog;
  * Creator:      Anding
  * Note:         TODO
  */
-public class WareDetailActivity extends AppCompatActivity implements View.OnClickListener{
+public class WareDetailActivity extends BaseActivity implements View.OnClickListener{
 
     private WebView mWebView;
     private CnToolbar mToolBar;

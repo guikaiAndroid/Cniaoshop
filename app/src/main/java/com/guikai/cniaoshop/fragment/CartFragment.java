@@ -1,6 +1,7 @@
 package com.guikai.cniaoshop.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,8 +15,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.guikai.cniaoshop.CniaoApplication;
 import com.guikai.cniaoshop.Contants;
+import com.guikai.cniaoshop.LoginActivity;
 import com.guikai.cniaoshop.MainActivity;
+import com.guikai.cniaoshop.NewOrderActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.CartAdapter;
 import com.guikai.cniaoshop.adapter.decoration.DividerItemDecortion;
@@ -142,17 +146,20 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     }
 
     private void toOrder() {
-        httpHelper.get(Contants.API.USER_DETAIL, new SpotsCallBack<User>(getActivity()) {
-            @Override
-            public void onSuccess(Call call, Response response, User o) {
-                Log.e(TAG, "onSuccess: "+response.code());
-            }
+        Intent intent = new Intent(getActivity(), NewOrderActivity.class);
 
-            @Override
-            public void onError(Call call, Response response, int code, Exception e) {
-                Log.e(TAG, "onError: "+response.code());
-            }
-        });
+        startActivity(intent,true);
+//        httpHelper.get(Contants.API.USER_DETAIL, new SpotsCallBack<User>(getActivity()) {
+//            @Override
+//            public void onSuccess(Call call, Response response, User o) {
+//                Log.e(TAG, "onSuccess: "+response.code());
+//            }
+//
+//            @Override
+//            public void onError(Call call, Response response, int code, Exception e) {
+//                Log.e(TAG, "onError: "+response.code());
+//            }
+//        });
     }
 
     private void showDelControl(){
@@ -181,6 +188,24 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         mAdapter.showTotalPrice();
 
         mCheckBox.setChecked(true);
+    }
+
+    public void startActivity(Intent intent, boolean isNeedLogin){
+
+        if (isNeedLogin) {
+            User user = CniaoApplication.getmInstance().getUser();
+            if (user != null) {
+                super.startActivity(intent);
+            }
+            else {
+                CniaoApplication.getmInstance().putIntent(intent);
+                Intent LoginIntent = new Intent(getActivity(), LoginActivity.class);
+                super.startActivity(LoginIntent);
+            }
+        } else {
+            super.startActivity(intent);
+        }
+
     }
 }
 

@@ -58,7 +58,7 @@ public class CniaoApplication extends Application {
         UserLocalData.clearToken(this);
     }
 
-    private void putIntent(Intent intent) {
+    public void putIntent(Intent intent){
         this.intent = intent;
     }
 
@@ -70,5 +70,7 @@ public class CniaoApplication extends Application {
         context.startActivity(intent);
         this.intent = null;
     }
+
+
 
 }
