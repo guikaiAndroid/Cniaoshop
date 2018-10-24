@@ -48,8 +48,8 @@ public class CniaoApplication extends Application {
 
     public void putUser(User user, String token) {
         this.user = user;
-        UserLocalData.clearUser(this);
-        UserLocalData.clearToken(this);
+        UserLocalData.putUser(this,user);
+        UserLocalData.putoken(this,token);
     }
 
     public void clearUser() {

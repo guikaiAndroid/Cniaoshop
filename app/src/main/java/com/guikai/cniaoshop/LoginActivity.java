@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(Call call, Response response, LoginRespMsg<User> userLoginRespMsg) {
                         CniaoApplication application = CniaoApplication.getmInstance();
                         //将从服务器获取的存入本地share
-                        ToastUtils.show(LoginActivity.this,userLoginRespMsg.getData()+"");
+                        ToastUtils.show(LoginActivity.this,userLoginRespMsg.getData()+""+userLoginRespMsg.getToken());
                         application.putUser(userLoginRespMsg.getData(), userLoginRespMsg.getToken());
 
                         //登录成功 结束当前页面，返回值给上一个fragment 我的页面
