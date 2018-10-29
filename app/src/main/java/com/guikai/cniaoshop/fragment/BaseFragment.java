@@ -14,8 +14,6 @@ import com.guikai.cniaoshop.bean.User;
 
 public abstract class BaseFragment extends Fragment {
 
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = createView(inflater, container, savedInstanceState);

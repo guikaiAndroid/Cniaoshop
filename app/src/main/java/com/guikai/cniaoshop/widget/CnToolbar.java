@@ -25,15 +25,12 @@ import com.guikai.cniaoshop.R;
  */
 public class CnToolbar extends Toolbar {
 
-
-
     private LayoutInflater mInflater;
 
     private View mView;
     private TextView mTextTitle;
     private TextView mSearchView;
     private Button mRightButton;
-
 
     public CnToolbar(Context context) {
         this(context,null);
@@ -64,7 +61,7 @@ public class CnToolbar extends Toolbar {
             @SuppressLint("RestrictedApi")
             boolean isShowSearchView = a.getBoolean(R.styleable.CnToolbar_isShowSearchView,false);
 
-            if(isShowSearchView){
+            if(isShowSearchView) {
                 showSearchView();
                 hideTitleView();
             }
@@ -79,22 +76,18 @@ public class CnToolbar extends Toolbar {
 
     private void initView() {
 
-
         if(mView == null) {
 
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.toolbar, null);
 
-
             mTextTitle = (TextView) mView.findViewById(R.id.toolbar_title);
             mSearchView = (TextView) mView.findViewById(R.id.toolbar_searchview);
             mRightButton = (Button) mView.findViewById(R.id.toolbar_rightButton);
 
-
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
             addView(mView, lp);
         }
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -146,7 +139,6 @@ public class CnToolbar extends Toolbar {
             mSearchView.setVisibility(VISIBLE);
     }
 
-
     public void hideSearchView(){
         if(mSearchView !=null)
             mSearchView.setVisibility(GONE);
@@ -157,11 +149,9 @@ public class CnToolbar extends Toolbar {
             mTextTitle.setVisibility(VISIBLE);
     }
 
-
     public void hideTitleView() {
         if (mTextTitle != null)
             mTextTitle.setVisibility(GONE);
-
     }
 
 }

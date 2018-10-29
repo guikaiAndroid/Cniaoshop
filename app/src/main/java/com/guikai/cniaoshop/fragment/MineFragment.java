@@ -1,6 +1,7 @@
 package com.guikai.cniaoshop.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,8 +16,10 @@ import android.widget.TextView;
 import com.guikai.cniaoshop.CniaoApplication;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.LoginActivity;
+import com.guikai.cniaoshop.MainActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.bean.User;
+import com.guikai.cniaoshop.widget.CnToolbar;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -26,6 +29,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     private CircleImageView mImageHead;
     private TextView mTexUserName;
     private Button mbtnLogout;
+    private CnToolbar mToolbar;
+    private TextView textView;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,15 +39,28 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof MainActivity){
+
+            MainActivity activity = (MainActivity) context;
+            mToolbar = (CnToolbar) activity.findViewById(R.id.toolbar);
+            mToolbar.setVisibility(View.GONE);
+        }
+    }
+
+
     private void initView(View view) {
         mImageHead = (CircleImageView) view.findViewById(R.id.img_head);
         mTexUserName = (TextView) view.findViewById(R.id.text_username);
         mbtnLogout = view.findViewById(R.id.btn_logout);
+        textView = view.findViewById(R.id.txt_my_orders);
         mImageHead.setOnClickListener(this);
         mTexUserName.setOnClickListener(this);
         mbtnLogout.setOnClickListener(this);
+        textView.setOnClickListener(this);
     }
-
 
     @Override
     public void init() {
@@ -62,6 +80,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             case R.id.btn_logout:
                 toLogout();
                 break;
+            case R.id.txt_my_orders:
+                break;
+
         }
     }
 
