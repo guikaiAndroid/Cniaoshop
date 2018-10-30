@@ -41,4 +41,5 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation project(':sharesdk')
+    implementation project(':smssdk')
 }
