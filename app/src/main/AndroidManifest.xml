@@ -33,7 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RegActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +50,9 @@
 
         <activity android:name=".NewOrderActivity"> </activity>
 
+        <activity android:name=".RegActivity"/>
+
+        <activity android:name=".RegSecondActivity"/>
 
         <activity
             android:name="com.mob.tools.MobUIShell"

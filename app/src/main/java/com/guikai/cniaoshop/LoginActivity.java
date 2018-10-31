@@ -1,5 +1,6 @@
 package com.guikai.cniaoshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -105,6 +106,12 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void Reg(View view) {
+        Intent intent = new Intent(this,RegActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

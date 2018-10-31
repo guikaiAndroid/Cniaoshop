@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
         android:background="@drawable/selector_view_block"
         android:padding="@dimen/largePadding">
 
@@ -68,10 +67,9 @@
                 android:textSize="16sp"
                 android:layout_marginRight="10dp" />
 
-            <View
-                style="@style/line_horizontal"/>
 
-            <cniao5.com.cniao5shop.widget.ClearEditText
+
+            <com.guikai.cniaoshop.widget.ClearEditText
                 android:id="@+id/edittxt_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,10 +99,8 @@
                 android:textSize="16sp"
                 android:layout_marginRight="10dp" />
 
-            <View
-                style="@style/line_horizontal"/>
 
-            <cniao5.com.cniao5shop.widget.ClearEditText
+            <com.guikai.cniaoshop.widget.ClearEditText
                 android:id="@+id/edittxt_pwd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

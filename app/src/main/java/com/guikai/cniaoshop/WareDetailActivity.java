@@ -4,13 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 import com.guikai.cniaoshop.bean.Wares;
 import com.guikai.cniaoshop.utils.CartProvider;
@@ -18,6 +16,8 @@ import com.guikai.cniaoshop.utils.ToastUtils;
 import com.guikai.cniaoshop.widget.CnToolbar;
 
 import java.io.Serializable;
+
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import dmax.dialog.SpotsDialog;
 
 /*
@@ -25,7 +25,7 @@ import dmax.dialog.SpotsDialog;
  * Package_Name: com.guikai.cniaoshop
  * File_Name:    WareDetailActivity
  * Creator:      Anding
- * Note:         TODO
+ * Note:         商品详情页 Js与原生交互
  */
 public class WareDetailActivity extends BaseActivity implements View.OnClickListener{
 
