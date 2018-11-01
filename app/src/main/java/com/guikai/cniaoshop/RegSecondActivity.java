@@ -60,7 +60,7 @@ public class RegSecondActivity extends BaseActivity {
         pwd = getIntent().getStringExtra("pwd");
         countryCode = getIntent().getStringExtra("countryCode");
 
-        String formatedPhone = "+" + countryCode + "" + splitPhoneNum(phone);
+        String formatedPhone = "+" + countryCode + "  " + splitPhoneNum(phone);
         String text = getString(R.string.smssdk_send_mobile_detail) + formatedPhone;
         mTxtTip.setText(Html.fromHtml(text));
 
@@ -106,7 +106,7 @@ public class RegSecondActivity extends BaseActivity {
     //分割电话号码
     private String splitPhoneNum(String phone) {
         StringBuilder builder = new StringBuilder(phone);
-        builder.reverse();
+
         return builder.toString();
     }
 
