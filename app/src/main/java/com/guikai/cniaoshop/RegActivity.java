@@ -119,7 +119,6 @@ public class RegActivity extends AppCompatActivity {
             ToastUtils.show(this, "您输入的手机号码格式不正确");
             return;
         }
-
     }
 
     //开启子线程 完成回调后的操作
@@ -176,7 +175,6 @@ public class RegActivity extends AppCompatActivity {
             }
             Log.d(TAG,"code="+code + "rule="+rule);
         }
-
     }
 
     /** 请求验证码后，跳转到验证码填写页面 */
@@ -223,8 +221,6 @@ public class RegActivity extends AppCompatActivity {
         // 返回SIM卡运营商所在国家的MCC+MNC. 5位或6位. 如果没有SIM卡返回空
         return tm.getSimOperator();
     }
-
-
 
     @Override
     protected void onDestroy() {

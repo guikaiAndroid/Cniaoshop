@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     >
-    
+
     <com.guikai.cniaoshop.widget.CnToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -22,17 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/selector_view_block"
-        android:padding="@dimen/largePadding">
+        >
 
 
         <com.guikai.cniaoshop.widget.ClearEditText
             android:id="@+id/etxt_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_telphone_32"
-            android:drawablePadding="20dp"
+            android:paddingStart="15dp"
             android:hint="请输入手机号码"
             style="@style/editText_base"
             android:inputType="phone" />
@@ -43,8 +42,7 @@
             android:id="@+id/etxt_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_lock"
-            android:drawablePadding="20dp"
+            android:paddingStart="15dp"
             android:hint="请输入登录密码"
             style="@style/editText_base"
             android:inputType="textPassword" />
