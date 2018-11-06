@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,24 +15,19 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.guikai.cniaoshop.CniaoApplication;
-import com.guikai.cniaoshop.Contants;
+import com.guikai.cniaoshop.CreateOrderActivity;
 import com.guikai.cniaoshop.LoginActivity;
 import com.guikai.cniaoshop.MainActivity;
-import com.guikai.cniaoshop.NewOrderActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.CartAdapter;
 import com.guikai.cniaoshop.adapter.decoration.DividerItemDecortion;
 import com.guikai.cniaoshop.bean.ShoppingCart;
 import com.guikai.cniaoshop.bean.User;
 import com.guikai.cniaoshop.http.OkHttpHelper;
-import com.guikai.cniaoshop.http.SpotsCallBack;
 import com.guikai.cniaoshop.utils.CartProvider;
 import com.guikai.cniaoshop.widget.CnToolbar;
 
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 public class CartFragment extends Fragment implements View.OnClickListener{
 
@@ -146,7 +140,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     }
 
     private void toOrder() {
-        Intent intent = new Intent(getActivity(), NewOrderActivity.class);
+        Intent intent = new Intent(getActivity(), CreateOrderActivity.class);
 
         startActivity(intent,true);
 //        httpHelper.get(Contants.API.USER_DETAIL, new SpotsCallBack<User>(getActivity()) {

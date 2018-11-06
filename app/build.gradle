@@ -40,6 +40,13 @@ dependencies {
     implementation 'com.facebook.fresco:imagepipeline-okhttp:1.10.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+
+    implementation 'com.pingxx:pingpp-core:2.1.19' // (Ping++ 标准版 SDK) 必须添加
+    implementation 'com.pingxx:pingpp-alipay:2.1.19' // 使用支付宝时添加
+    implementation 'com.pingxx:pingpp-upacp:2.1.19' // 使用银联支付时添加
+    implementation 'com.pingxx:pingpp-qpay:2.1.19' // 使用QQ钱包时添加
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' // 使用微信支付时添加,具体版本参考微信官方文档
     implementation project(':sharesdk')
     implementation project(':smssdk')
 }

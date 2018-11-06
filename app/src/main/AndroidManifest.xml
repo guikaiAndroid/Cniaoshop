@@ -25,6 +25,8 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--Mob shareSDK or Mob SMS SDK 集成  end -->
+    <!-- 银联需要的权限 -->
+    <uses-permission android:name="android.permission.NFC"/>
     <application
         android:name=".CniaoApplication"
         android:allowBackup="true"
@@ -54,6 +56,8 @@
 
         <activity android:name=".RegSecondActivity"/>
 
+        <activity android:name=".CreateOrderActivity"/>
+
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -70,6 +74,39 @@
 
         <meta-data android:name="Mob-AppKey" android:value="283f45086d140"/>
         <meta-data android:name="Mob-AppSecret" android:value="0f06c27175cde81917cdc1539d5fb8bb"/>
+
+        <!-- Ping++ SDK所需要注册 微信 支付宝 银联 三种支付-->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"/>
+        <activity
+            android:name="com.unionpay.UPPayWapActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
 
     </application>
 
