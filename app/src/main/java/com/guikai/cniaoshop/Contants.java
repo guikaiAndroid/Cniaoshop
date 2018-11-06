@@ -18,6 +18,7 @@ public class Contants {
     public  static final String DES_KEY="Cniao5_123456";
 
     public  static final int REQUEST_CODE=0;
+    public  static final int REQUEST_CODE_PAYMENT=1;
 
     public static class API {
 
@@ -39,6 +40,9 @@ public class Contants {
         public static final String REG = BASE_URL + "auth/reg";
 
         public static final String USER_DETAIL=BASE_URL +"user/get?id=1";
+
+        public static final String ORDER_CREATE=BASE_URL +"/order/create";
+        public static final String ORDER_COMPLEPE=BASE_URL +"/order/complete";
 
     }
 }

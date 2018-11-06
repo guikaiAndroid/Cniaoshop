@@ -1,5 +1,7 @@
 package com.guikai.cniaoshop;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,33 +14,38 @@ import android.widget.TextView;
 
 import com.guikai.cniaoshop.adapter.WareOrderAdapter;
 import com.guikai.cniaoshop.adapter.layoutmanager.FullyLinearLayoutManager;
+import com.guikai.cniaoshop.bean.Charge;
+import com.guikai.cniaoshop.bean.ShoppingCart;
 import com.guikai.cniaoshop.http.OkHttpHelper;
+import com.guikai.cniaoshop.http.SpotsCallBack;
+import com.guikai.cniaoshop.msg.CreateOrderRespMsg;
 import com.guikai.cniaoshop.utils.CartProvider;
+import com.guikai.cniaoshop.utils.JSONUtil;
+import com.pingplusplus.android.PaymentActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class CreateOrderActivity extends BaseActivity implements View.OnClickListener {
 
-    /**
-     * 银联支付渠道
-     */
+    //银联支付渠道
     private static final String CHANNEL_UPACP = "upacp";
-    /**
-     * 微信支付渠道
-     */
+
+    //微信支付渠道
     private static final String CHANNEL_WECHAT = "wx";
-    /**
-     * 支付支付渠道
-     */
+
+    //支付支付渠道
     private static final String CHANNEL_ALIPAY = "alipay";
-    /**
-     * 百度支付渠道
-     */
+
+    //百度支付渠道
     private static final String CHANNEL_BFB = "bfb";
-    /**
-     * 京东支付渠道
-     */
+
+    //京东支付渠道
     private static final String CHANNEL_JDPAY_WAP = "jdpay_wap";
 
     private TextView textOrder;
@@ -123,5 +130,82 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
             }
         }
     }
+
+    //提交订单，进行支付
+    public void createNewOrder(View view) {
+
+        final List<ShoppingCart> carts = mAdapter.getDatas();
+        List<WareItem> items = new ArrayList<>(carts.size());
+        for (ShoppingCart c:carts) {
+            WareItem item = new WareItem(c.getId(),c.getPrice().intValue());
+            items.add(item);
+        }
+
+        //把list对象转为json格式字符串
+        String item_json = JSONUtil.toJSON(items);
+
+        Map<String,String> params = new HashMap<>(5);
+        params.put("user_id",CniaoApplication.getmInstance().getUser().getId()+"");
+        params.put("item_json",item_json);
+        params.put("pay_channel",payChannel);
+        params.put("amount",(int)amount+"");
+        params.put("addr_id",1+"");
+
+        mBtnCreateOrder.setEnabled(false);
+
+        okHttpHelper.post(Contants.API.ORDER_CREATE, params, new SpotsCallBack<CreateOrderRespMsg>(this) {
+            @Override
+            public void onSuccess(Call call, Response response, CreateOrderRespMsg respMsg) {
+                mBtnCreateOrder.setEnabled(true);
+                orderNum = respMsg.getData().getOrderNum();
+                Charge charge = respMsg.getData().getCharge();
+
+                openPaymentActivity(JSONUtil.toJSON(charge));
+            }
+
+            @Override
+            public void onError(Call call, Response response, int code, Exception e) {
+                mBtnCreateOrder.setEnabled(true);
+            }
+        });
+
+    }
+
+    private void openPaymentActivity(String charge){
+
+        Intent intent = new Intent();
+        String packageName = getPackageName();
+        ComponentName componentName = new ComponentName(packageName, packageName + ".wxapi.WXPayEntryActivity");
+        intent.setComponent(componentName);
+        intent.putExtra(PaymentActivity.EXTRA_CHARGE, charge);
+        startActivityForResult(intent, Contants.REQUEST_CODE_PAYMENT);
+    }
+
+    class WareItem {
+        private Long ware_id;
+        private int amount;
+
+        public WareItem(Long ware_id, int amount) {
+            this.ware_id = ware_id;
+            this.amount = amount;
+        }
+
+        public Long getWare_id() {
+            return ware_id;
+        }
+
+        public void setWare_id(Long ware_id) {
+            this.ware_id = ware_id;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+
+        public void setAmount(int amount) {
+            this.amount = amount;
+        }
+    }
+
 
 }
