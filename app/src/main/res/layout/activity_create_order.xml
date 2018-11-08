@@ -32,12 +32,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_below="@id/toolbar"
                 android:background="@drawable/selector_list_item"
                 android:focusable="true"
                 android:clickable="true"
-                android:padding="@dimen/largePadding">
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="桂凯 (188****0684)"
                         android:textColor="@color/black"
                         />
@@ -58,17 +58,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:textSize="16sp"
                         android:text="上海市徐汇区桂林路卓易科技"
                         android:textColor="@color/gray"/>
 
                 </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_right_64"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
 
             </RelativeLayout>
 
@@ -78,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_addr"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/selector_view_block"
-                android:padding="@dimen/largePadding">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/txt_order"
@@ -110,13 +104,6 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_right_64"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
-
                 </RelativeLayout>
 
             </LinearLayout>
@@ -127,9 +114,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_items"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/selector_view_block"
-                android:padding="@dimen/largePadding">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -146,8 +133,8 @@
                     android:id="@+id/rl_alipay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/largePadding"
-                    android:paddingBottom="@dimen/largePadding"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:background="@drawable/selector_list_item"
                     android:focusable="true"
                     android:clickable="true"
@@ -171,14 +158,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="支付宝"
                             android:textSize="16sp"
                             android:textColor="@color/black"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="支持有支付宝，网银用户使用"
@@ -208,8 +195,8 @@
                     android:id="@+id/rl_wechat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/largePadding"
-                    android:paddingBottom="@dimen/largePadding"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:background="@drawable/selector_list_item"
                     android:focusable="true"
                     android:clickable="true"
@@ -233,14 +220,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="微信支付"
                             android:textSize="16sp"
                             android:textColor="@color/black"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="用微信支付，安全便捷"
@@ -268,8 +255,8 @@
                     android:id="@+id/rl_bd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/largePadding"
-                    android:paddingBottom="@dimen/largePadding"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:background="@drawable/selector_list_item"
                     android:focusable="true"
                     android:clickable="true"
@@ -292,14 +279,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="百度钱包"
                             android:textSize="16sp"
                             android:textColor="@color/black"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="百度安全支付服务"
@@ -330,7 +317,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="#90000000">
 
         <TextView

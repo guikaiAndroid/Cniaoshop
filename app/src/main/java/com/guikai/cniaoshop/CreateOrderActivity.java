@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import com.guikai.cniaoshop.adapter.WareOrderAdapter;
 import com.guikai.cniaoshop.adapter.layoutmanager.FullyLinearLayoutManager;
-import com.guikai.cniaoshop.bean.Charge;
 import com.guikai.cniaoshop.bean.ShoppingCart;
 import com.guikai.cniaoshop.http.OkHttpHelper;
 import com.guikai.cniaoshop.http.SpotsCallBack;
@@ -87,6 +87,9 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setAdapter(mAdapter);
+
+        amount = mAdapter.getTotalPrice();
+        mTxtTotal.setText("应付款： ￥"+amount);
     }
 
     private void initView() {
@@ -108,6 +111,8 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
         mLayoutWechat.setOnClickListener(this);
         mLayoutAlipay.setOnClickListener(this);
         mLayoutBd.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -136,12 +141,13 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
         final List<ShoppingCart> carts = mAdapter.getDatas();
         List<WareItem> items = new ArrayList<>(carts.size());
-        for (ShoppingCart c:carts) {
+        for (ShoppingCart c:carts ) {
+
             WareItem item = new WareItem(c.getId(),c.getPrice().intValue());
             items.add(item);
+
         }
 
-        //把list对象转为json格式字符串
         String item_json = JSONUtil.toJSON(items);
 
         Map<String,String> params = new HashMap<>(5);
@@ -157,10 +163,12 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onSuccess(Call call, Response response, CreateOrderRespMsg respMsg) {
                 mBtnCreateOrder.setEnabled(true);
-                orderNum = respMsg.getData().getOrderNum();
-                Charge charge = respMsg.getData().getCharge();
+                Log.e("xxxx", "打印"+respMsg.getData());
+//                orderNum = respMsg.getData().getOrderNum();
+//                Charge charge = respMsg.getData().getCharge();
 
-                openPaymentActivity(JSONUtil.toJSON(charge));
+//                openPaymentActivity(JSONUtil.toJSON(charge));
+
             }
 
             @Override
