@@ -165,9 +165,9 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
         mBtnCreateOrder.setEnabled(false);
 
         okHttpHelper.post(Contants.API.ORDER_CREATE, params, new SpotsCallBack<CreateOrderRespMsg>(this) {
+
             @Override
             public void onSuccess(Call call, Response response, CreateOrderRespMsg respMsg) {
-
 
                 if (respMsg != null){
                     Log.e("支付提交失败", "未获取到支付码"+respMsg);

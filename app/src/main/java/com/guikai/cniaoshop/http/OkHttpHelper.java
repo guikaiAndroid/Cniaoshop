@@ -3,6 +3,7 @@ package com.guikai.cniaoshop.http;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -206,6 +207,7 @@ public class OkHttpHelper {
 
             String token = CniaoApplication.getmInstance().getToken();
             if(!TextUtils.isEmpty(token))
+                Log.e("正在通过Post请求，","token不为空，值为"+token);
                 builder.add("token", token);
 
         }

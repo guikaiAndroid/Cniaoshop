@@ -168,7 +168,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    private void  hideDelControl(){
+    private void hideDelControl(){
 
         mTextTotal.setVisibility(View.VISIBLE);
         mBtnOrder.setVisibility(View.VISIBLE);
