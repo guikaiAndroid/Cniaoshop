@@ -9,6 +9,7 @@ package com.guikai.cniaoshop.bean;
 import java.util.Map;
 
 public class Charge {
+
     String id;
     String object;
     Long created;

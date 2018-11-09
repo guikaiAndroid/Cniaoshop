@@ -143,20 +143,23 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
         final List<ShoppingCart> carts = mAdapter.getDatas();
         List<WareItem> items = new ArrayList<>(carts.size());
-        for (ShoppingCart c:carts) {
 
+        for (ShoppingCart c:carts) {
             WareItem item = new WareItem(c.getId(),c.getPrice().intValue());
             items.add(item);
-
         }
 
         String item_json = JSONUtil.toJSON(items);
 
         Map<String,String> params = new HashMap<>(5);
         params.put("user_id",CniaoApplication.getmInstance().getUser().getId()+"");
+        Log.e("user_id数据为：", ""+CniaoApplication.getmInstance().getUser().getId());
         params.put("item_json",item_json);
+        Log.e("购物车数据为：", ""+item_json);
         params.put("pay_channel",payChannel);
+        Log.e("pay_channel数据为：", payChannel+"");
         params.put("amount",(int)amount+"");
+        Log.e("amount：", (int)amount+"");
         params.put("addr_id",1+"");
 
         mBtnCreateOrder.setEnabled(false);
@@ -164,11 +167,13 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
         okHttpHelper.post(Contants.API.ORDER_CREATE, params, new SpotsCallBack<CreateOrderRespMsg>(this) {
             @Override
             public void onSuccess(Call call, Response response, CreateOrderRespMsg respMsg) {
-                mBtnCreateOrder.setEnabled(true);
 
-                if (respMsg.getData() == null){
-                    Log.e("xxxxxxxxxxxxxxx", "xxxxxxxxxxxxx");
+
+                if (respMsg != null){
+                    Log.e("支付提交失败", "未获取到支付码"+respMsg);
                 } else {
+
+                    mBtnCreateOrder.setEnabled(true);
                     orderNum = respMsg.getData().getOrderNum();
                     Charge charge = respMsg.getData().getCharge();
 
@@ -258,8 +263,8 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
     }
 
     class WareItem {
-        private Long ware_id;
-        private int amount;
+        private  Long ware_id;
+        private  int amount;
 
         public WareItem(Long ware_id, int amount) {
             this.ware_id = ware_id;

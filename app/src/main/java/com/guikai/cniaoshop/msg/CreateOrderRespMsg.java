@@ -17,4 +17,5 @@ public class CreateOrderRespMsg extends BaseRespMsg {
     public void setData(OrderRespMsg data) {
         this.data = data;
     }
+
 }

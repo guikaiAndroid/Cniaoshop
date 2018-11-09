@@ -8,11 +8,12 @@ package com.guikai.cniaoshop.msg;
 
 import com.guikai.cniaoshop.bean.Charge;
 
-public class OrderRespMsg {
+public class OrderRespMsg{
 
     private String orderNum;
 
     private Charge charge;
+
 
     public String getOrderNum() {
         return orderNum;

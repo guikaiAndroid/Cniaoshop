@@ -9,6 +9,7 @@ package com.guikai.cniaoshop.bean;
 import java.util.List;
 
 public class ChargeRefundCollection {
+
     String object;
     String url;
     Boolean hasMore;
