@@ -206,10 +206,12 @@ public class OkHttpHelper {
             }
 
             String token = CniaoApplication.getmInstance().getToken();
-            if(!TextUtils.isEmpty(token))
-                Log.e("正在通过Post请求，","token不为空，值为"+token);
-                builder.add("token", token);
 
+            if(!TextUtils.isEmpty(token)) {
+
+                Log.e("正在通过Post请求，", "token不为空，值为" + token);
+                builder.add("token", token);
+            }
         }
 
         return builder.build();

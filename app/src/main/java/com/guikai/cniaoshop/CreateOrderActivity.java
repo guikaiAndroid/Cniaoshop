@@ -171,6 +171,8 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
                 if (respMsg != null){
                     Log.e("支付提交失败", "未获取到支付码"+respMsg);
+                    toPayResultActivity(1);
+
                 } else {
 
                     mBtnCreateOrder.setEnabled(true);

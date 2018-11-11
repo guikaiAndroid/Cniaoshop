@@ -115,6 +115,7 @@
                 android:layout_below="@id/ll_items"
                 android:orientation="vertical"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="100dp"
                 android:background="@drawable/selector_view_block"
                 android:padding="10dp">
 
@@ -303,8 +304,6 @@
                         style="@style/radioButton" />
 
                 </RelativeLayout>
-
-                <!--</cniao5.com.yayashop.widget.NestRadioGroup>-->
 
             </LinearLayout>
 
