@@ -125,4 +125,9 @@ public class MainActivity extends BaseActivity {
 
         return view;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -67,6 +67,8 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         mAdapter.showTotalPrice();
     }
 
+
+
     private void showData(){
 
         List<ShoppingCart> carts = cartProvider.getAll();
@@ -143,6 +145,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         Intent intent = new Intent(getActivity(), CreateOrderActivity.class);
 
         startActivity(intent,true);
+        getActivity().finish();
 //        httpHelper.get(Contants.API.USER_DETAIL, new SpotsCallBack<User>(getActivity()) {
 //            @Override
 //            public void onSuccess(Call call, Response response, User o) {

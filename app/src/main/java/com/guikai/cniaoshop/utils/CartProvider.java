@@ -58,6 +58,12 @@ public class CartProvider {
         commit();
     }
 
+    //删除数据
+    public void deleteAll() {
+        datas.clear();
+        commit();
+    }
+
     //获取所有数据
     public List<ShoppingCart> getAll() {
         return getDataFromLocal();
