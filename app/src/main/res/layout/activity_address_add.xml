@@ -23,27 +23,25 @@
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:background="@drawable/selector_view_block"
-        android:padding="@dimen/largePadding">
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/largePadding"
-            android:paddingBottom="@dimen/largePadding"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收件人"
+                android:text="  收件人  "
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center"
                 />
 
-            <View
-                style="@style/line_horizontal"/>
 
             <com.guikai.cniaoshop.widget.ClearEditText
                 android:id="@+id/edittxt_consignee"
@@ -63,8 +61,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/largePadding"
-            android:paddingBottom="@dimen/largePadding"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:orientation="horizontal"
             >
 
@@ -79,8 +77,6 @@
                 android:layout_gravity="center"
                 />
 
-            <View
-                style="@style/line_horizontal"/>
 
             <com.guikai.cniaoshop.widget.ClearEditText
                 android:id="@+id/edittxt_phone"
@@ -101,8 +97,8 @@
             android:id="@+id/ll_city_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/largePadding"
-            android:paddingBottom="@dimen/largePadding"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:onClick="showCityPickerView"
             android:orientation="horizontal"
             >
@@ -118,8 +114,7 @@
                 android:layout_gravity="center"
 
                 />
-            <View
-                style="@style/line_horizontal"/>
+
 
 
             <TextView
@@ -147,8 +142,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/largePadding"
-            android:paddingBottom="@dimen/largePadding"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:orientation="horizontal"
             >
 
@@ -162,9 +157,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center"
                 />
-
-            <View
-                style="@style/line_horizontal"/>
 
             <com.guikai.cniaoshop.widget.ClearEditText
                 android:id="@+id/edittxt_add"

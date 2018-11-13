@@ -129,6 +129,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+
     private void toOrder() {
         Intent intent = new Intent(getActivity(), CreateOrderActivity.class);
 
