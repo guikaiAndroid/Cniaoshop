@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:ignore="NamespaceTypo">
+    android:layout_height="match_parent">
+
+    <com.guikai.cniaoshop.widget.CnToolbar
+        android:id="@id/toolbar"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowSearchView="false"
+        app:title="分类"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_category"
@@ -24,10 +37,10 @@
             android:id="@+id/slider_category"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            custom:pager_animation="Accordion"
-            custom:auto_cycle="true"
-            custom:indicator_visibility="visible"
-            custom:pager_animation_span="1100" />
+            app:pager_animation="Accordion"
+            app:auto_cycle="true"
+            app:indicator_visibility="visible"
+            app:pager_animation_span="1100" />
 
         <com.cjj.MaterialRefreshLayout
             android:id="@+id/refresh_layout"
@@ -46,6 +59,8 @@
             </android.support.v7.widget.RecyclerView>
 
         </com.cjj.MaterialRefreshLayout>
+
+    </LinearLayout>
 
     </LinearLayout>
 

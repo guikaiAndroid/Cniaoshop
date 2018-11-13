@@ -46,6 +46,6 @@
         android:onClick="backHome"
         android:textSize="16sp"
         android:layout_margin="@dimen/largerPadding"
-        android:text="返回购物车"/>
+        android:text="返回主页"/>
 
 </LinearLayout>

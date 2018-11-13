@@ -62,7 +62,7 @@ public class OkHttpHelper {
         return new OkHttpHelper();
     }
 
-    public void get(String url, Map<String, String> params, BaseCallback callback) {
+    public void get(String url, Map<String, Object> params, BaseCallback callback) {
 
         Request request = buildRequset(url, params, HttpMethodType.GET);
 
@@ -73,7 +73,7 @@ public class OkHttpHelper {
         get(url,null,callback);
     }
 
-    public void post(String url, Map<String, String> params, BaseCallback callback) {
+    public void post(String url, Map<String, Object> params, BaseCallback callback) {
 
         Request request = buildRequset(url, params, HttpMethodType.POST);
 
@@ -174,7 +174,7 @@ public class OkHttpHelper {
         });
     }
 
-    private Request buildRequset(String url, Map<String, String> params, HttpMethodType methodType) {
+    private Request buildRequset(String url, Map<String, Object> params, HttpMethodType methodType) {
 
         Request.Builder builder = new Request.Builder();
 
@@ -195,14 +195,14 @@ public class OkHttpHelper {
         return builder.build();
     }
 
-    private RequestBody buildFormData(Map<String, String> params) {
+    private RequestBody buildFormData(Map<String, Object> params) {
 
         FormBody.Builder builder = new FormBody.Builder();
 
         if (params != null) {
 
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                builder.add(entry.getKey(), entry.getValue());
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue()==null?"":entry.getValue().toString());
             }
 
             String token = CniaoApplication.getmInstance().getToken();
@@ -217,7 +217,7 @@ public class OkHttpHelper {
         return builder.build();
     }
 
-    private String buildUrlParams(String url, Map<String, String> params) {
+    private String buildUrlParams(String url, Map<String, Object> params) {
 
         if(params == null)
             params = new HashMap<>(1);
@@ -228,7 +228,7 @@ public class OkHttpHelper {
 
 
         StringBuffer sb = new StringBuffer();
-        for (Map.Entry<String, String> entry : params.entrySet()) {
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
             sb.append(entry.getKey() + "=" + entry.getValue());
             sb.append("&");
         }

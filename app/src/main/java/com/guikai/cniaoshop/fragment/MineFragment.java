@@ -1,25 +1,20 @@
 package com.guikai.cniaoshop.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.guikai.cniaoshop.AddressListActivity;
 import com.guikai.cniaoshop.CniaoApplication;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.LoginActivity;
-import com.guikai.cniaoshop.MainActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.bean.User;
-import com.guikai.cniaoshop.widget.CnToolbar;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,8 +23,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
 
     private CircleImageView mImageHead;
     private TextView mTexUserName;
+    private TextView mAddAddress;
     private Button mbtnLogout;
-    private CnToolbar mToolbar;
     private TextView textView;
 
     @Override
@@ -39,27 +34,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if(context instanceof MainActivity){
-
-            MainActivity activity = (MainActivity) context;
-            mToolbar = (CnToolbar) activity.findViewById(R.id.toolbar);
-            mToolbar.setVisibility(View.GONE);
-        }
-    }
-
-
     private void initView(View view) {
         mImageHead = (CircleImageView) view.findViewById(R.id.img_head);
         mTexUserName = (TextView) view.findViewById(R.id.text_username);
         mbtnLogout = view.findViewById(R.id.btn_logout);
         textView = view.findViewById(R.id.txt_my_orders);
+        mAddAddress = view.findViewById(R.id.txt_my_address);
         mImageHead.setOnClickListener(this);
         mTexUserName.setOnClickListener(this);
         mbtnLogout.setOnClickListener(this);
         textView.setOnClickListener(this);
+        mAddAddress.setOnClickListener(this);
     }
 
     @Override
@@ -81,6 +66,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 toLogout();
                 break;
             case R.id.txt_my_orders:
+                break;
+            case R.id.txt_my_address:
+                toAddressActivity();
                 break;
 
         }
@@ -114,5 +102,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             mImageHead.setImageResource(R.drawable.default_head);
             mbtnLogout.setVisibility(View.GONE);
         }
+    }
+
+    // 添加地址
+    public void toAddressActivity(){
+        startActivity(new Intent(getActivity(), AddressListActivity.class), true);
     }
 }

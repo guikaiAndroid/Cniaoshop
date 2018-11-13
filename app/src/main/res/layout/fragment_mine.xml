@@ -77,6 +77,7 @@
             <View style="@style/line_vertical" />
 
             <TextView
+                android:id="@+id/txt_my_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

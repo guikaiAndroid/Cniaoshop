@@ -38,13 +38,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initToolBar();
         initTab();
     }
 
-    private void initToolBar() {
-        mToolbar = (CnToolbar) findViewById(R.id.toolbar);
-    }
 
     private void initTab() {
         Tab tab_home = new Tab(HomeFragment.class, R.string.home, R.drawable.selector_icon_home);
@@ -80,12 +76,6 @@ public class MainActivity extends BaseActivity {
                 if (tabId == getString(R.string.cart)) {
 
                     refData();
-
-                } else {
-
-                    mToolbar.showSearchView();
-                    mToolbar.hideTitleView();
-                    mToolbar.getRightButton().setVisibility(View.GONE);
                 }
             }
         });
@@ -105,13 +95,11 @@ public class MainActivity extends BaseActivity {
                 cartFragment = (CartFragment) fragment;
 
                 cartFragment.refData();
-                cartFragment.changeToolbar();
             }
         }
         else
         {
             cartFragment.refData();
-            cartFragment.changeToolbar();
         }
     }
 

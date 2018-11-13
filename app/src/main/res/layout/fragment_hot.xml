@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.guikai.cniaoshop.widget.CnToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:isShowSearchView="true">
+    </com.guikai.cniaoshop.widget.CnToolbar>
+
     <com.cjj.MaterialRefreshLayout
         android:id="@+id/refresh_view"
         android:layout_width="match_parent"

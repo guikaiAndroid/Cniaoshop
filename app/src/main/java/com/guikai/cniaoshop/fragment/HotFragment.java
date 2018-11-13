@@ -2,35 +2,25 @@ package com.guikai.cniaoshop.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
-import com.cjj.MaterialRefreshListener;
 import com.google.gson.reflect.TypeToken;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.WareDetailActivity;
 import com.guikai.cniaoshop.adapter.BaseAdapter;
-import com.guikai.cniaoshop.decoration.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.HWAdatper;
 import com.guikai.cniaoshop.bean.Page;
 import com.guikai.cniaoshop.bean.Wares;
-import com.guikai.cniaoshop.http.OkHttpHelper;
-import com.guikai.cniaoshop.http.SpotsCallBack;
 import com.guikai.cniaoshop.utils.Pager;
 
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 public class HotFragment extends BaseFragment implements Pager.OnPageListener{
 
@@ -82,7 +72,6 @@ public class HotFragment extends BaseFragment implements Pager.OnPageListener{
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerItemDecortion(getActivity(), DividerItemDecortion.VERTICAL_LIST));
     }
 
     @Override

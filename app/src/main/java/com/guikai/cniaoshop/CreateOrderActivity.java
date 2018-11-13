@@ -151,7 +151,7 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
         String item_json = JSONUtil.toJSON(items);
 
-        Map<String,String> params = new HashMap<>(5);
+        Map<String,Object> params = new HashMap<>(5);
         params.put("user_id",CniaoApplication.getmInstance().getUser().getId()+"");
         Log.e("user_id数据为：", ""+CniaoApplication.getmInstance().getUser().getId());
         params.put("item_json",item_json);
@@ -234,7 +234,7 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
     private void changeOrderStatus(final int status){
 
-        Map<String,String> params = new HashMap<>(5);
+        Map<String,Object> params = new HashMap<>(5);
         params.put("order_num",orderNum);
         params.put("status",status+"");
 

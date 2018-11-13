@@ -23,13 +23,12 @@ import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.BaseAdapter;
 import com.guikai.cniaoshop.adapter.CategoryAdapter;
-import com.guikai.cniaoshop.decoration.DividerItemDecortion;
 import com.guikai.cniaoshop.adapter.WaresAdapter;
+import com.guikai.cniaoshop.adapter.decoration.DividerItemDecortion;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.Category;
 import com.guikai.cniaoshop.bean.Page;
 import com.guikai.cniaoshop.bean.Wares;
-import com.guikai.cniaoshop.decoration.DividerGridItemDecoration;
 import com.guikai.cniaoshop.http.BaseCallback;
 import com.guikai.cniaoshop.http.OkHttpHelper;
 import com.guikai.cniaoshop.http.SpotsCallBack;
@@ -258,7 +257,7 @@ public class CategoryFragment extends Fragment {
 
                     mRecyclerviewWares.setLayoutManager(new GridLayoutManager(getContext(), 2));
                     mRecyclerviewWares.setItemAnimator(new DefaultItemAnimator());
-                    mRecyclerviewWares.addItemDecoration(new DividerGridItemDecoration(getContext()));
+                    mRecyclerviewWares.addItemDecoration(new DividerItemDecortion(getContext(),DividerItemDecortion.VERTICAL_LIST));
                 }
                 else{
                     mWaresAdapter.clear();

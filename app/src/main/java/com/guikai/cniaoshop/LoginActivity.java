@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 //将账号密码存入Map中，其中密码需要DES加密，
-                Map<String, String> params = new HashMap<>(2);
+                Map<String, Object> params = new HashMap<>(2);
                 params.put("phone",phone);
                 params.put("password", DESUtil.encode(Contants.DES_KEY, pwd));
 

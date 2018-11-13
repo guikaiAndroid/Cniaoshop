@@ -2,7 +2,6 @@ package com.guikai.cniaoshop.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,8 +17,8 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.guikai.cniaoshop.Contants;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.WareListActivity;
-import com.guikai.cniaoshop.decoration.CardViewtemDecortion;
 import com.guikai.cniaoshop.adapter.HomeCatgoryAdapter;
+import com.guikai.cniaoshop.adapter.decoration.CardViewtemDecortion;
 import com.guikai.cniaoshop.bean.Banner;
 import com.guikai.cniaoshop.bean.Campaign;
 import com.guikai.cniaoshop.bean.HomeCampaign;

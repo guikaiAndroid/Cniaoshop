@@ -60,6 +60,10 @@
 
         <activity android:name=".PayResultActivity"/>
 
+        <activity android:name=".AddressListActivity"/>
+
+        <activity android:name=".AddressAddActivity"/>
+
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

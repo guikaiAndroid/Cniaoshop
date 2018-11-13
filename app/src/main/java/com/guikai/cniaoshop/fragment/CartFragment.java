@@ -1,6 +1,5 @@
 package com.guikai.cniaoshop.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.guikai.cniaoshop.CniaoApplication;
 import com.guikai.cniaoshop.CreateOrderActivity;
 import com.guikai.cniaoshop.LoginActivity;
-import com.guikai.cniaoshop.MainActivity;
 import com.guikai.cniaoshop.R;
 import com.guikai.cniaoshop.adapter.CartAdapter;
 import com.guikai.cniaoshop.adapter.decoration.DividerItemDecortion;
@@ -78,35 +76,8 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecortion.VERTICAL_LIST));
     }
 
-
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if(context instanceof MainActivity){
-
-            MainActivity activity = (MainActivity) context;
-
-            mToolbar = (CnToolbar) activity.findViewById(R.id.toolbar);
-
-            changeToolbar();
-        }
-    }
-
-    public void changeToolbar(){
-
-        mToolbar.hideSearchView();
-        mToolbar.showTitleView();
-        mToolbar.setTitle(R.string.cart);
-        mToolbar.getRightButton().setVisibility(View.VISIBLE);
-        mToolbar.setRightButtonText("编辑");
-
-        mToolbar.getRightButton().setOnClickListener(this);
-        mToolbar.getRightButton().setTag(ACTION_EDIT);
-
-    }
-
     private void initView(View view) {
+        mToolbar = (CnToolbar) view.findViewById(R.id.toolbar);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_all);
         mTextTotal = (TextView) view.findViewById(R.id.txt_total);
@@ -126,6 +97,23 @@ public class CartFragment extends Fragment implements View.OnClickListener{
                 toOrder();
             }
         });
+
+        changeToolbar();
+    }
+
+    public void changeToolbar(){
+
+        mToolbar.hideSearchView();
+        mToolbar.showTitleView();
+        mToolbar.setTitle(R.string.cart);
+        mToolbar.getRightButton().setVisibility(View.VISIBLE);
+        mToolbar.setRightButtonText("编辑");
+
+        mToolbar.getRightButton().setOnClickListener(this);
+
+        mToolbar.getRightButton().setTag(ACTION_EDIT);
+
+
     }
 
     @Override

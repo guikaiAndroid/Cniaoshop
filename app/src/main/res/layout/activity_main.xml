@@ -8,15 +8,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.guikai.cniaoshop.widget.CnToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:isShowSearchView="true">
-    </com.guikai.cniaoshop.widget.CnToolbar>
-
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
