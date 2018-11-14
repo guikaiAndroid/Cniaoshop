@@ -4,20 +4,24 @@
 
 涉及到的知识点有：
 
-1. FragmentTabHost实现底部菜单导航
+1. FragmentTabHost实现底部导航
 
 2. 自定义ToolBar
 
-3. Android Image Slider 轮播图开源库的使用 实现Banner
+3. Banner轮播图实现（Android Image Slider开源库）
 
-4. RecyclerView的基本使用，主要展示商品列表 展示HomeFragment
+4. 网络图片加载（picasso、fresco开源库）
 
-5. okHttp的基本使用 
+5. CardView的简单使用
 
-6. okHttp的封装
+6. RecyclerView的封装使用(主要展示各种商品、购物车列表)
 
-6. 主页商品列表重构 利用okHttp获取json数据 Picasso网络图片缓存 
+7. okHttp工具类封装
 
-7. 主页商品点击事件(RecyclerView的点击) HomeFragment的网络数据加载
+8. Gson解析封装
 
-8. HotFragment热卖商品页面的实现 
+9. RecyclerView列表加载更多、下拉刷新(MaterialRefeshLayout开源库)
+
+10. RecyclerView分页封装
+
+11.商品详情页(H5与原生交互)
