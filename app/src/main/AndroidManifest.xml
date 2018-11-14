@@ -50,8 +50,6 @@
 
         <activity android:name=".LoginActivity"> </activity>
 
-        <activity android:name=".NewOrderActivity"> </activity>
-
         <activity android:name=".RegActivity"/>
 
         <activity android:name=".RegSecondActivity"/>

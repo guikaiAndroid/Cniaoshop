@@ -3,6 +3,7 @@ package com.guikai.cniaoshop;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -156,10 +157,15 @@ public class AddressAddActivity extends BaseActivity {
 
         Map<String,Object> params = new HashMap<>(1);
         params.put("user_id",CniaoApplication.getmInstance().getUser().getId());
+        Log.e("user_id数据为：", ""+CniaoApplication.getmInstance().getUser().getId());
         params.put("consignee",consignee);
+        Log.e("consignee数据为：", ""+consignee);
         params.put("phone",phone);
+        Log.e("phone数据为：", ""+phone);
         params.put("addr",address);
+        Log.e("address数据为：", ""+address);
         params.put("zip_code","000000");
+        Log.e("zip_code数据为：", "000000");
 
         mHttpHelper.post(Contants.API.ADDRESS_CREATE, params, new SpotsCallBack<BaseRespMsg>(this) {
             @Override
