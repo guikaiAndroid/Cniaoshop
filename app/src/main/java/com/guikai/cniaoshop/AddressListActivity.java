@@ -132,8 +132,6 @@ public class AddressListActivity extends BaseActivity {
 
             }
 
-
-
         });
     }
 
