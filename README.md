@@ -20,8 +20,8 @@
 
 8. Gson解析封装
 
-8. RecyclerView列表加载更多、下拉刷新(MaterialRefeshLayout开源库)
+9. RecyclerView列表加载更多、下拉刷新(MaterialRefeshLayout开源库)
 
-9. RecyclerView分页封装
+10. RecyclerView分页封装
 
-10.商品详情页(H5与原生交互)
+11.商品详情页(H5与原生交互)
