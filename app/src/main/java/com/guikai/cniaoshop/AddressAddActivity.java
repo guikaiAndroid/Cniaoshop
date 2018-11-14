@@ -61,21 +61,23 @@ public class AddressAddActivity extends BaseActivity {
 
         mCityPikerView.setPicker((ArrayList) mProvinces, mCities, mDistricts, true);
         mCityPikerView.setTitle("选择城市");
-        mCityPikerView.setCyclic(false,false,false);
+        mCityPikerView.setCyclic(false, false, false);
         mCityPikerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3) {
-                String address = mProvinces.get(options1).getName()+"  "
-                        + mCities.get(options1).get(option2)+ "  "
+
+                String addresss = mProvinces.get(options1).getName() + "  "
+                        + mCities.get(options1).get(option2) + "  "
                         + mDistricts.get(options1).get(option2).get(options3);
-                mTxtAddress.setText(address);
+                mTxtAddress.setText(addresss);
 
             }
         });
     }
 
-    private void initProvinceDatas() {
-        //获取assets文件数据
+    protected void initProvinceDatas()
+    {
+
         AssetManager asset = getAssets();
         try {
             InputStream input = asset.open("province_data.xml");
@@ -86,38 +88,44 @@ public class AddressAddActivity extends BaseActivity {
             XmlParserHandler handler = new XmlParserHandler();
             parser.parse(input, handler);
             input.close();
-            //获取解析出来的数据
+            // 获取解析出来的数据
             mProvinces = handler.getDataList();
 
         } catch (Throwable e) {
-
             e.printStackTrace();
-
         } finally {
 
         }
 
-        if (mProvinces != null) {
-            for (ProvinceModel p : mProvinces) {
-                List<CityModel> cities = p.getCityList();
-                ArrayList<String> cityStrs = new ArrayList<>(cities.size());  //城市名称List
+        if(mProvinces !=null){
 
-                for (CityModel c:cities) {
-                    cityStrs.add(c.getName()); //把城市名称放入 cityStrs
+            for (ProvinceModel p :mProvinces){
 
-                    ArrayList<ArrayList<String>> dts = new ArrayList<>();  //地区 List
+                List<CityModel> cities =  p.getCityList();
+                ArrayList<String> cityStrs = new ArrayList<>(cities.size()); //城市List
+
+
+                for (CityModel c :cities){
+
+                    cityStrs.add(c.getName()); // 把城市名称放入 cityStrs
+
+
+                    ArrayList<ArrayList<String>> dts = new ArrayList<>(); // 地区 List
 
                     List<DistrictModel> districts = c.getDistrictList();
                     ArrayList<String> districtStrs = new ArrayList<>(districts.size());
 
-                    for (DistrictModel d:districts) {
-                        districtStrs.add(d.getName());  //把城市名称放入 districtStrs
+                    for (DistrictModel d : districts){
+                        districtStrs.add(d.getName()); // 把城市名称放入 districtStrs
                     }
                     dts.add(districtStrs);
 
+
                     mDistricts.add(dts);
                 }
-                mCities.add(cityStrs);  //组装城市数据
+
+                mCities.add(cityStrs); // 组装城市数据
+
             }
         }
     }

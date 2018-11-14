@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -86,7 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(Call call, Response response, LoginRespMsg<User> userLoginRespMsg) {
                         CniaoApplication application = CniaoApplication.getmInstance();
                         //将从服务器获取的存入本地share
-                        ToastUtils.show(LoginActivity.this,userLoginRespMsg.getData()+""+userLoginRespMsg.getToken());
+                        Log.e("LoginActivity：", userLoginRespMsg.getData()+""+userLoginRespMsg.getToken());
+                        ToastUtils.show(LoginActivity.this,"登录成功");
                         application.putUser(userLoginRespMsg.getData(), userLoginRespMsg.getToken());
 
                         //登录成功 结束当前页面，返回值给上一个fragment 我的页面
