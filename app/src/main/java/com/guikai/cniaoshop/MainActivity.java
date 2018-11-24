@@ -1,7 +1,7 @@
 package com.guikai.cniaoshop;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +15,6 @@ import com.guikai.cniaoshop.fragment.CategoryFragment;
 import com.guikai.cniaoshop.fragment.HomeFragment;
 import com.guikai.cniaoshop.fragment.HotFragment;
 import com.guikai.cniaoshop.fragment.MineFragment;
-import com.guikai.cniaoshop.widget.CnToolbar;
 import com.guikai.cniaoshop.widget.FragmentTabHost;
 
 import java.util.ArrayList;
@@ -26,8 +25,6 @@ public class MainActivity extends BaseActivity {
     private LayoutInflater mInflater;
 
     private FragmentTabHost mTabhost;
-
-    private CnToolbar mToolbar;
 
     private CartFragment cartFragment;
 

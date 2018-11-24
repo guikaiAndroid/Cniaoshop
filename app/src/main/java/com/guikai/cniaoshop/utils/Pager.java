@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
-import okhttp3.Request;
 import okhttp3.Response;
 
 /*
@@ -285,7 +284,7 @@ public class Pager {
         @Override
         public void onFailure(Call call, IOException e) {
             dismissDialog();
-            Toast.makeText(builder.mContext,"请求出错："+e.getMessage(),Toast.LENGTH_LONG).show();
+            Log.e("网络错误", "onFailure: 数据加载空");
 
             if (STATE_REFREH==state) {
                 builder.mRefreshLayout.finishRefresh();
