@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabChanged(String tabId) {
 
-                if (tabId == getString(R.string.cart)) {
+                if (tabId.equals(getString(R.string.cart))) {
 
                     refData();
                 }
