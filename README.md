@@ -1,4 +1,4 @@
-# Cniaoshop
+# Cniaoshop功能点
 
 一个购物App的实现
 
@@ -22,6 +22,6 @@
 
 9. List列表加载更多、下拉刷新(MaterialRefeshLayout)
 
-10.RecyclerView分页封装
+10. RecyclerView分页封装
 
-11.H5与原生交互
+11. H5与原生交互
