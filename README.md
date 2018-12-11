@@ -8,20 +8,20 @@
 
 2. 自定义ToolBar
 
-3. Banner轮播图实现（Android Image Slider开源库）
+3. Banner轮播图实现(Android Image Slider)
 
-4. 网络图片加载（picasso、fresco开源库）
+4. 网络图片加载(picasso、fresco)
 
 5. CardView的简单使用
 
-6. RecyclerView的封装使用(主要展示各种商品、购物车列表)
+6. RecyclerView封装(BaseAdapter、BaseViewHolder)
 
-7. okHttp工具类封装
+7. okHttp封装
 
 8. Gson解析封装
 
-9. RecyclerView列表加载更多、下拉刷新(MaterialRefeshLayout开源库)
+9. List列表加载更多、下拉刷新(MaterialRefeshLayout)
 
-10. RecyclerView分页封装
+10.RecyclerView分页封装
 
-11.商品详情页(H5与原生交互)
+11.H5与原生交互
