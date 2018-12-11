@@ -25,3 +25,11 @@
 10. RecyclerView分页封装
 
 11. H5与原生交互
+
+12. api权限验证(Token值)
+
+13. 分享功能集成ShareSDK
+
+14. 短信验证集成SMSSDK
+
+15. 支付SDK集成(Ping++)
