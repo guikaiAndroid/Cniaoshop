@@ -31,9 +31,9 @@ import okhttp3.Response;
  */
 public class OkHttpHelper {
 
-    public static final int TOKEN_MISSING=401;// token 丢失
-    public static final int TOKEN_ERROR=402; // token 错误
-    public static final int TOKEN_EXPIRE=403; // token 过期
+    private static final int TOKEN_MISSING = 401;// token 丢失
+    private static final int TOKEN_ERROR = 402; // token 错误
+    private static final int TOKEN_EXPIRE = 403; // token 过期
 
     public static final String TAG="OkHttpHelper";
 
@@ -81,7 +81,7 @@ public class OkHttpHelper {
     }
 
 
-    public void doRequest(final Request request, final BaseCallback callback) {
+    private void doRequest(final Request request, final BaseCallback callback) {
 
         callback.onRequestBefore(request);
 
