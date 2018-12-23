@@ -21,10 +21,9 @@ import java.util.List;
 
 public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.ViewHolder> {
 
-    private static int VIEW_TYPE_L = 0;
-    private static int VIEW_TYPE_R = 1;
+    private final static int VIEW_TYPE_L = 0;
+    private final static int VIEW_TYPE_R = 1;
 
-    private LayoutInflater mInflate;
     private List<HomeCampaign> mDatas;
     private Context mContext;
 
@@ -42,7 +41,7 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        mInflate = LayoutInflater.from(viewGroup.getContext());
+        LayoutInflater mInflate = LayoutInflater.from(viewGroup.getContext());
 
         if (i == VIEW_TYPE_R) {
             return new ViewHolder(mInflate.inflate(R.layout.template_home_cardview2,viewGroup,false));
