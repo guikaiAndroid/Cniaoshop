@@ -88,7 +88,12 @@ public class LoginActivity extends AppCompatActivity {
                         CniaoApplication application = CniaoApplication.getmInstance();
                         //将从服务器获取的存入本地share
                         Log.e("LoginActivity：", userLoginRespMsg.getData()+""+userLoginRespMsg.getToken());
-                        ToastUtils.show(LoginActivity.this,"登录成功");
+                        if (userLoginRespMsg.getData()!=null) {
+                            ToastUtils.show(LoginActivity.this, "登录成功");
+                        } else {
+                            ToastUtils.show(LoginActivity.this, "用户名不存在或密码错误");
+                            return;
+                        }
                         application.putUser(userLoginRespMsg.getData(), userLoginRespMsg.getToken());
 
                         //登录成功 结束当前页面，返回值给上一个fragment 我的页面
