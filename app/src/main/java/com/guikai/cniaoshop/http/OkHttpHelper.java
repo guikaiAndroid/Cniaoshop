@@ -41,7 +41,7 @@ public class OkHttpHelper {
 
     private Gson gson;
 
-    //解决报错cush 开启子线程handler 不能在子线程刷新UI 安卓中控件都是线程安全的
+    //解决报错cush 开启子线程handler 不能在子线程刷新UI 保证线程安全
     private Handler handler;
 
     //单例模式
