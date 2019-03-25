@@ -14,9 +14,9 @@
 
 5. CardView的简单使用
 
-6. RecyclerView封装(BaseAdapter、BaseViewHolder)
+6. RecyclerView简单封装(BaseAdapter、BaseViewHolder)
 
-7. okHttp封装
+7. okHttp简单封装框架
 
 8. Gson解析封装
 
@@ -33,3 +33,5 @@
 14. 短信验证集成SMSSDK
 
 15. 支付SDK集成(Ping++)
+
+16. 与服务端交互
